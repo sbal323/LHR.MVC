@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-*",
+  "description": "LHR.MVC.CUST Class Library",
+  "authors": [ "bal" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+
+    "dnxcore50": {
+      "dependencies": {
+        "LHR.MVC": "1.0.0-*"
+      }
+    }
+  },
+  "dependencies": {
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final"
+  },
+  "resource": "Views/**"
+}

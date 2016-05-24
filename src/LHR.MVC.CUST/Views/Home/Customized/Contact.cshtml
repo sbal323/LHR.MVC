@@ -1,0 +1,24 @@
+﻿@using Microsoft.Extensions.OptionsModel
+@using LHR.MVC.Modules.Application
+@inject IOptions<AppSettings> site
+@{
+    
+    Layout = site.Value.PathToCoreViewsDirectory + "/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Contact";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+<h2>
+    @ViewBag.SomeData.Name
+</h2>
+<h1>Кастом прикастом</h1>
+        <address>
+            Boston, MA<br />
+            Lanteria USA<br />
+        </address>
+        <address>
+            <strong>Support:</strong> <a href="mailto:Support@lanteria.net">Support@lanteria.net</a><br />
+            <strong>Marketing:</strong> <a href="mailto:Marketing@lanteria.net">Marketing@lanteria.net</a>
+        </address>
