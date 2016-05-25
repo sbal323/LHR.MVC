@@ -8,25 +8,29 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Extensions.OptionsModel;
 using LHR.MVC.Modules.Application;
+using LHR.BL;
+
+
 namespace LHR.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private IHostingEnvironment CurrentEnvironment { get; set; }
-        private AppSettings _settings;
-        public HomeController(IHostingEnvironment appEnvironment, IOptions<AppSettings> settings)
+        private IBLEmployee BLEmployee { get; set; }
+        private AppSettings Settings { get; set; }
+        public HomeController(IOptions<AppSettings> settings, IBLEmployee blEmployee)
         {
-            CurrentEnvironment = appEnvironment;
-            _settings = settings.Value;
+            Settings = settings.Value;
+            BLEmployee = blEmployee;
         }
         public IActionResult Index()
         {
-            return View();
+            var empl = BLEmployee.Get(0);
+            return View(empl);
         }
 
         public IActionResult About()
         {
-            ViewData["Title"] = $"Your application looking for views here: {_settings.PathToCoreViewsDirectory} and for addons here {_settings.AddonsFolderName}";
+            ViewData["Title"] = $"Your application looking for views here: {Settings.PathToCoreViewsDirectory} and for addons here {Settings.AddonsFolderName}";
 
             return View();
         }

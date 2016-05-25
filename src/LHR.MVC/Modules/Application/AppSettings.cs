@@ -9,5 +9,6 @@ namespace LHR.MVC.Modules.Application
     {
         public string AddonsFolderName { get; set; }
         public string PathToCoreViewsDirectory { get; set; }
+        public string LibsFolderName { get; set; }
     }
 }

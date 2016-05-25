@@ -1,5 +1,6 @@
-﻿@{
-    Layout = LHR.MVC.Modules.Application.LHRSystem.GetInstance().ApplicationSettings.PathToCoreViewsDirectory +  "/Views/Shared/_Layout.cshtml";
+﻿@inject Microsoft.Extensions.OptionsModel.IOptions<LHR.MVC.Modules.Application.AppSettings> site
+@{
+    Layout = site.Value.PathToCoreViewsDirectory + "/Views/Shared/_Layout.cshtml";
 }
 @{
     ViewData["Title"] = "Contact";

@@ -18,6 +18,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using System.Reflection;
 using LHR.MVC.Modules.Application;
 using Microsoft.Extensions.OptionsModel;
+using System.IO;
 
 namespace LHR.MVC
 {
@@ -70,17 +71,17 @@ namespace LHR.MVC
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
+            //typeof(IServiceCollection).GetTypeInfo().DeclaredMethods.Where(x => x.Name == "AddTransient").First().Invoke(services, new object[] { contract, implementation });
+            // Add options
             services.AddOptions();
             services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
             var serviceAppSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>();
                         
             var rootFileProvider = new PhysicalFileProvider(CurrentEnvironment.WebRootPath + "\\..");
-
+            
+            //create the custom plugin directory provider
             services.AddSingleton<IAssemblyProvider, LHRAssemblyProvider>(provider =>
             {
-                //create the custom plugin directory provider
-                //var hosting = provider.GetRequiredService<IApplicationEnvironment>();
-                //var fileProvider = new PhysicalFileProvider(hosting.ApplicationBasePath);
                 var pluginAssemblyProvider = new LHRPluginAssemblyProvider(
                     rootFileProvider,
                     PlatformServices.Default.AssemblyLoadContextAccessor,
@@ -92,13 +93,28 @@ namespace LHR.MVC
                     new IAssemblyProvider[] { pluginAssemblyProvider });
             });
 
+            // Create the custom Razor View location expander
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 options.FileProvider = rootFileProvider;
                 options.ViewLocationExpanders.Add(new LHRViewLocationExpander(serviceAppSettings));
             });
+            // Load libraries for dynamic dependencies
+            List<Assembly> loadedAssemblies = new List<Assembly>();
+            var libsFolder = new DirectoryInfo(rootFileProvider.Root + serviceAppSettings.Value.LibsFolderName);
+            if (libsFolder.Exists)
+            {
+                foreach (var fileSystemInfo in libsFolder.GetFileSystemInfos("*.dll"))
+                {
+                    loadedAssemblies.Add(PlatformServices.Default.AssemblyLoadContextAccessor.Default.LoadFile(fileSystemInfo.FullName));
+                }
+            }
+            // Register dynamic dependencies
+            Type contract = Assembly.Load(new AssemblyName("LHR.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")).GetType("LHR.BL.IBLEmployee");//((Object)Activator.CreateInstance("LHR.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "IBLEmployee")).GetType();
+            Type implementation = loadedAssemblies.Where(x=> x.FullName == "LHR.BL.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null").First().GetType("LHR.BL.Core.BLEmployee");
+            //Assembly.Load(new AssemblyName("LHR.BL.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")) //((Object)Activator.CreateInstance("LHR.BL.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BLEmployee")).GetType();
+            services.AddTransient(contract, implementation);
 
-            
         }
         private IHostingEnvironment CurrentEnvironment { get; set; }
 
