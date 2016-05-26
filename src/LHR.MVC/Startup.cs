@@ -76,9 +76,9 @@ namespace LHR.MVC
             services.AddOptions();
             services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
             var serviceAppSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>();
-                        
+
             var rootFileProvider = new PhysicalFileProvider(CurrentEnvironment.WebRootPath + "\\..");
-            
+
             //create the custom plugin directory provider
             services.AddSingleton<IAssemblyProvider, LHRAssemblyProvider>(provider =>
             {
@@ -110,11 +110,13 @@ namespace LHR.MVC
                 }
             }
             // Register dynamic dependencies
-            Type contract = Assembly.Load(new AssemblyName("LHR.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")).GetType("LHR.BL.IBLEmployee");//((Object)Activator.CreateInstance("LHR.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "IBLEmployee")).GetType();
-            Type implementation = loadedAssemblies.Where(x=> x.FullName == "LHR.BL.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null").First().GetType("LHR.BL.Core.BLEmployee");
-            //Assembly.Load(new AssemblyName("LHR.BL.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")) //((Object)Activator.CreateInstance("LHR.BL.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BLEmployee")).GetType();
+            Type contract, implementation;
+            contract = Assembly.Load(new AssemblyName("LHR.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")).GetType("LHR.DAL.IDALEmployee");
+            implementation = loadedAssemblies.Where(x => x.FullName == "LHR.DAL.SQL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null").First().GetType("LHR.DAL.SQL.DALEmployee");
             services.AddTransient(contract, implementation);
-
+            contract = Assembly.Load(new AssemblyName("LHR.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")).GetType("LHR.BL.IBLEmployee");
+            implementation = loadedAssemblies.Where(x => x.FullName == "LHR.BL.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null").First().GetType("LHR.BL.Core.BLEmployee");
+            services.AddTransient(contract, implementation);
         }
         private IHostingEnvironment CurrentEnvironment { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿{
   "version": "1.0.0-*",
-  "description": "LHR.BL.Core Class Library",
+  "description": "LHR.DAL Class Library",
   "authors": [ "bal" ],
   "tags": [ "" ],
   "projectUrl": "",
@@ -18,8 +18,6 @@
     }
   },
   "dependencies": {
-    "LHR.BL": "1.0.0-*",
-    "LHR.DAL": "1.0.0-*",
     "LHR.Types": "1.0.0-*"
   }
 }

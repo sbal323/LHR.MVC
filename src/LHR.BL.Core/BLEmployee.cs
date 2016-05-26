@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LHR.BL;
 using LHR.Types;
+using LHR.DAL;
 
 namespace LHR.BL.Core
 {
@@ -11,21 +12,16 @@ namespace LHR.BL.Core
     // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
     public class BLEmployee : IBLEmployee
     {
-        public BLEmployee()
+        protected IDALEmployee DALEmployee { get; set; }
+        public BLEmployee(IDALEmployee dalEmployee)
         {
+            DALEmployee = dalEmployee;
         }
 
         public Employee Get(int id)
         {
             //throw new NotImplementedException();
-            return new Employee() {
-                FullName = "Sergey Balog",
-                FirstName = "Sergey",
-                LastName = "Balog",
-                Id = 1,
-                Created = new DateTime(2005, 1, 1),
-                Author = "System Account"
-            };
+            return DALEmployee.Get(id);
         }
 
         public Employee GetByCountry(int countryId)

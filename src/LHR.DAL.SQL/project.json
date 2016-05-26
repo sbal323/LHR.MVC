@@ -1,25 +1,27 @@
 ﻿{
   "version": "1.0.0-*",
-  "description": "LHR.BL.Core Class Library",
+  "description": "LHR.DAL.SQL Class Library",
   "authors": [ "bal" ],
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
   "frameworks": {
-    "dnx451": { },
+    "dnx451": {
+    },
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23516",
         "System.Collections": "4.0.11-beta-23516",
         "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Threading": "4.0.11-beta-23516"
+        "System.Runtime": "4.0.0",
+        "System.Threading": "4.0.11-beta-23516",
       }
     }
   },
   "dependencies": {
-    "LHR.BL": "1.0.0-*",
     "LHR.DAL": "1.0.0-*",
-    "LHR.Types": "1.0.0-*"
+    "LHR.Types": "1.0.0-*",
+    "System.Data.Common": "4.0.0",
+    "System.Data.SqlClient": "4.0.0-beta-23516"
   }
 }
