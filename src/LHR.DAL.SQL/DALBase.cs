@@ -10,12 +10,11 @@ namespace LHR.DAL.SQL
     {
         protected IConnectionDetailsProvider ConnectionDetailsProvider { get; set; }
         protected SqlConnection Connection { get; set; }
-        //protected System.
         public DALBase(IConnectionDetailsProvider provider)
         {
             ConnectionDetailsProvider = provider;
             Connection = new SqlConnection(ConnectionDetailsProvider.GetConnectionString());
-            Connection.Open();
+            //Connection.Open();
         }
     }
 }

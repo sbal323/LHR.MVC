@@ -35,11 +35,8 @@
   },
 
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": {
-      "dependencies": {
-      }
-    }
+    "dnx46": { }
+
   },
 
   "exclude": [

@@ -6,8 +6,7 @@
   "projectUrl": "",
   "licenseUrl": "",
   "frameworks": {
-
-    "dnxcore50": {
+    "dnx46": {
       "dependencies": {
         "LHR.MVC": "1.0.0-*"
       }
