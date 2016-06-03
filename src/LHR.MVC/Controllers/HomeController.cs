@@ -7,7 +7,7 @@ using Microsoft.AspNet.FileProviders;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Extensions.OptionsModel;
-using LHR.MVC.Modules.Application;
+using LHR.Types.System;
 using LHR.BL;
 
 

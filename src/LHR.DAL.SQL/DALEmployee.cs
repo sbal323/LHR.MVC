@@ -9,12 +9,11 @@ namespace LHR.DAL.SQL
 {
     public class DALEmployee : DALBase, IDALEmployee
     {
-        public DALEmployee(IConnectionDetailsProvider provider): base(provider)
+        public DALEmployee(IConnectionProvider provider): base(provider)
         {
         }
         Employee IDALEmployee.Get(int id)
         {
-            //Connection.Open();
                 return new Employee()
                 {
                     FullName = "Sergey Balog",

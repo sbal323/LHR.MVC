@@ -1,8 +1,8 @@
 ﻿using LHR.MVC.STH.Model;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
-using LHR.MVC.Modules.Application;
 using Microsoft.Extensions.OptionsModel;
+using LHR.Types.System;
 
 namespace LHR.MVC.Custom.Controllers
 {

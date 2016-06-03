@@ -1,4 +1,4 @@
-﻿using LHR.MVC.Modules.Application;
+﻿using LHR.MVC.Services;
 using Microsoft.AspNet.FileProviders;
 using Microsoft.AspNet.Mvc.Infrastructure;
 using Microsoft.Extensions.OptionsModel;
@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using LHR.Types.System;
 
 namespace LHR.MVC
 {
@@ -66,14 +67,22 @@ namespace LHR.MVC
 
             // Add the loader to the container so that any call to Assembly.Load 
             // will call the load context back (if it's not already loaded)
-            using (_assemblyLoaderContainer.AddLoader(
-                new LHRDirectoryLoader(binPath, loadContext)))
-            {
+            var loader = _assemblyLoaderContainer.AddLoader(
+                new LHRDirectoryLoader(binPath, loadContext)
+                );
+            //using (var loader = _assemblyLoaderContainer.AddLoader(
+            //    new LHRDirectoryLoader(binPath, loadContext)
+            //    ))
+            //{
                 foreach (var fileSystemInfo in binPath.GetFileSystemInfos("*.dll"))
                 {
                     var assembly2 = loadContext.LoadFile(fileSystemInfo.FullName);
                     yield return assembly2;
                 }
+            //}
+            if (null != loader)
+            {
+                loader.Dispose();
             }
         }
     }

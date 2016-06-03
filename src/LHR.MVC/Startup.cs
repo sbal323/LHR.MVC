@@ -16,9 +16,11 @@ using Microsoft.AspNet.FileProviders;
 using Microsoft.AspNet.Mvc.Infrastructure;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.Reflection;
-using LHR.MVC.Modules.Application;
+using LHR.MVC.Services.DI;
 using Microsoft.Extensions.OptionsModel;
 using System.IO;
+using LHR.Types.System;
+using LHR.Core;
 
 namespace LHR.MVC
 {
@@ -65,7 +67,11 @@ namespace LHR.MVC
             //assemblies.AddRange(pap.CandidateAssemblies);
             //services.AddMvc().AddControllersAsServices(assemblies);
 
-            services.AddMvc();
+            services.AddMvc(
+                options => {
+                    // Add global filters
+                    options.Filters.Add(new Filters.ErrorHandlerFilter());
+                });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -99,24 +105,12 @@ namespace LHR.MVC
                 options.FileProvider = rootFileProvider;
                 options.ViewLocationExpanders.Add(new LHRViewLocationExpander(serviceAppSettings));
             });
-            // Load libraries for dynamic dependencies
-            List<Assembly> loadedAssemblies = new List<Assembly>();
-            var libsFolder = new DirectoryInfo(rootFileProvider.Root + serviceAppSettings.Value.LibsFolderName);
-            if (libsFolder.Exists)
-            {
-                foreach (var fileSystemInfo in libsFolder.GetFileSystemInfos("*.dll"))
-                {
-                    loadedAssemblies.Add(PlatformServices.Default.AssemblyLoadContextAccessor.Default.LoadFile(fileSystemInfo.FullName));
-                }
-            }
-            // Register dynamic dependencies
-            Type contract, implementation;
-            contract = Assembly.Load(new AssemblyName("LHR.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")).GetType("LHR.DAL.IDALEmployee");
-            implementation = loadedAssemblies.Where(x => x.FullName == "LHR.DAL.SQL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null").First().GetType("LHR.DAL.SQL.DALEmployee");
-            services.AddTransient(contract, implementation);
-            contract = Assembly.Load(new AssemblyName("LHR.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")).GetType("LHR.BL.IBLEmployee");
-            implementation = loadedAssemblies.Where(x => x.FullName == "LHR.BL.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null").First().GetType("LHR.BL.Core.BLEmployee");
-            services.AddTransient(contract, implementation);
+            // Init core DI Manager
+            DIManager coreDIManager = new DIManager();
+            //Manage DI
+            DIProvider diProvider = new DIProvider(serviceAppSettings.Value, rootFileProvider, services, coreDIManager);
+            diProvider.LoadLibraries();
+            diProvider.RegisterDependencies();
         }
         private IHostingEnvironment CurrentEnvironment { get; set; }
 

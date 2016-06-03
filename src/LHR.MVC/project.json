@@ -9,6 +9,7 @@
     "EntityFramework.Commands": "7.0.0-rc1-final",
     "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
     "LHR.BL": "1.0.0-*",
+    "LHR.Core": "1.0.0-*",
     "LHR.DAL": "1.0.0-*",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
     "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-rc1-final",

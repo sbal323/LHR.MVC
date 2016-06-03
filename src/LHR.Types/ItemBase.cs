@@ -18,7 +18,7 @@ namespace LHR.Types
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (System.Reflection.PropertyInfo property in this.GetType().GetTypeInfo().DeclaredProperties)
+            foreach (PropertyInfo property in this.GetType().GetTypeInfo().DeclaredProperties)
             {
                 sb.Append(property.Name);
                 sb.Append(": ");
@@ -30,8 +30,7 @@ namespace LHR.Types
                 {
                     sb.Append(property.GetValue(this, null));
                 }
-
-                sb.Append(System.Environment.NewLine);
+                sb.Append(Environment.NewLine);
             }
             return sb.ToString();
         }

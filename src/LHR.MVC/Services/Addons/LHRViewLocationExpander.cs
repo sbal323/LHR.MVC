@@ -6,8 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Reflection;
 using Microsoft.AspNet.Mvc.Controllers;
-using LHR.MVC.Modules.Application;
+using LHR.MVC.Services;
 using Microsoft.Extensions.OptionsModel;
+using LHR.Types.System;
 
 namespace LHR.MVC
 {

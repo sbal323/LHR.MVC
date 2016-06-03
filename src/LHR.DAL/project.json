@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
   "description": "LHR.DAL Class Library",
   "authors": [ "bal" ],
@@ -9,6 +9,7 @@
     "dnx46": { }
   },
   "dependencies": {
-    "LHR.Types": "1.0.0-*"
+    "LHR.Types": "1.0.0-*",
+    "System.Data.Common": "4.0.1-rc2-24027"
   }
 }
