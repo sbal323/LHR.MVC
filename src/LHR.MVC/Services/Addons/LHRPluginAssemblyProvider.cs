@@ -67,23 +67,23 @@ namespace LHR.MVC
 
             // Add the loader to the container so that any call to Assembly.Load 
             // will call the load context back (if it's not already loaded)
-            var loader = _assemblyLoaderContainer.AddLoader(
-                new LHRDirectoryLoader(binPath, loadContext)
-                );
-            //using (var loader = _assemblyLoaderContainer.AddLoader(
+            //var loader = _assemblyLoaderContainer.AddLoader(
             //    new LHRDirectoryLoader(binPath, loadContext)
-            //    ))
-            //{
+            //    );
+            using (var loader = _assemblyLoaderContainer.AddLoader(
+                new LHRDirectoryLoader(binPath, loadContext)
+                ))
+            {
                 foreach (var fileSystemInfo in binPath.GetFileSystemInfos("*.dll"))
                 {
                     var assembly2 = loadContext.LoadFile(fileSystemInfo.FullName);
                     yield return assembly2;
                 }
-            //}
-            if (null != loader)
-            {
-                loader.Dispose();
             }
+            //if (null != loader)
+            //{
+            //    loader.Dispose();
+            //}
         }
     }
 }

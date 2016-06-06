@@ -1,6 +1,9 @@
-﻿@inject Microsoft.Extensions.OptionsModel.IOptions<LHR.MVC.Modules.Application.AppSettings> site
+﻿@using Microsoft.Extensions.OptionsModel
+@using LHR.Types.System
+@inject IOptions<AppSettings> site
 @{
-    Layout = site.Value.PathToCoreViewsDirectory + "/Views/Shared/_Layout.cshtml";  
+    
+    Layout = site.Value.PathToCoreViewsDirectory + "/Views/Shared/_Layout.cshtml";
 }
 @{
     ViewData["Title"] = "Contact";
@@ -8,7 +11,7 @@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 <h2>
-    @ViewBag.SomeData.Name
+    Name = @ViewBag.SomeData.Name
 </h2>
 <h1>Кастом прикастом</h1>
         <address>

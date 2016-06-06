@@ -57,7 +57,7 @@ namespace LHR.MVC
             if (_additionalProviders == null) return baseCandidates;
             //return null;
             IEnumerable<Library> libs = _additionalProviders.SelectMany(provider => provider.CandidateAssemblies.Select(
-                    x => new Library(x.FullName, null, null, null, Enumerable.Empty<string>(),
+                    x => new Library(x.FullName, null, null, Path.GetDirectoryName(x.Location), Enumerable.Empty<string>(),
                         new[] { new AssemblyName(x.FullName) })));
             return baseCandidates.Concat(libs);
         }

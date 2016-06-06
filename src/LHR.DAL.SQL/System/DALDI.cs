@@ -19,7 +19,7 @@ namespace LHR.DAL.SQL.System
             ORMManager orm = new ORMManager();
             string commandSQL = "SELECT * From DISettings";
             SqlCommand cmd = new SqlCommand(commandSQL);
-            SqlDataReader rdr = base.ExecuteReader(cmd);
+            SqlDataReader rdr = ExecuteReader(cmd);
             result = orm.MapDataToBusinessEntityCollection<DISetting>(rdr);
             cmd.Dispose();
             return result;

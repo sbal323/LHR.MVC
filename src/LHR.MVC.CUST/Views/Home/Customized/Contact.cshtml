@@ -1,5 +1,5 @@
 ﻿@using Microsoft.Extensions.OptionsModel
-@using LHR.MVC.Modules.Application
+@using LHR.Types.System
 @inject IOptions<AppSettings> site
 @{
     
@@ -11,7 +11,7 @@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 <h2>
-    @ViewBag.SomeData.Name
+    Name = @ViewBag.SomeData.Name
 </h2>
 <h1>Кастом прикастом</h1>
         <address>

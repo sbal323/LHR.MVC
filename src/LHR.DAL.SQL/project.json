@@ -15,5 +15,8 @@
     "Newtonsoft.Json": "9.0.1-beta1",
     "System.Data.Common": "4.0.1-rc2-24027",
     "System.Data.SqlClient": "4.1.0-rc2-24027"
+  },
+  "scripts": {
+    "postbuild": "xcopy /E /Y \"%project:Directory%\\..\\..\\artifacts\\bin\\%project:Name%\\Debug\\dnx46\" \"%project:Directory%\\..\\LHR.MVC\\DILibraries\""
   }
 }

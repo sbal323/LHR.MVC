@@ -15,5 +15,7 @@
   "dependencies": {
     "Microsoft.AspNet.Mvc": "6.0.0-rc1-final"
   },
-  "resource": "Views/**"
+  "scripts": {
+    "postbuild": [ "echo D | xcopy /S /E /Y \"%project:Directory%\\..\\..\\artifacts\\bin\\%project:Name%\\Debug\\dnx46\" \"%project:Directory%\\..\\LHR.MVC\\Plugins\\%project:Name%\\bin\\\"", "echo D | xcopy /S /E /Y \"%project:Directory%\\Views\" \"%project:Directory%\\..\\LHR.MVC\\Plugins\\%project:Name%\\Views\\\"" ]
+  }
 }

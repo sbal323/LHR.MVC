@@ -1,4 +1,4 @@
-﻿@inject Microsoft.Extensions.OptionsModel.IOptions<LHR.MVC.Modules.Application.AppSettings> site
+﻿@inject Microsoft.Extensions.OptionsModel.IOptions<LHR.Types.System.AppSettings> site
 @{
     Layout = site.Value.PathToCoreViewsDirectory + "/Views/Shared/_Layout.cshtml";
 }
@@ -8,7 +8,7 @@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 <h2>
-    @ViewBag.SomeData.Name
+   Name 1 = @ViewBag.SomeData.Name
 </h2>
         <address>
             Boston, MA<br />
