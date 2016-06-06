@@ -9,7 +9,7 @@ namespace LHR.DAL.SQL
 {
     public class DALEmployee : DALBase, IDALEmployee
     {
-        public DALEmployee(IConnectionProvider provider): base(provider)
+        public DALEmployee(ITransactionalConnectionProvider provider): base(provider)
         {
         }
         Employee IDALEmployee.Get(int id)

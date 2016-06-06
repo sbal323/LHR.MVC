@@ -3,52 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace LHR.DAL.SQL
 {
-    public class DALBase:IDisposable
+    public class DALBase
     {
         protected SqlConnection Connection { get; }
-        protected SqlTransaction Transaction { get; set; }
-        public DALBase(IConnectionProvider provider)
+        //protected SqlTransaction Transaction { get; set; }
+        ITransactionalConnectionProvider connectionProvider;
+        public DALBase(ITransactionalConnectionProvider provider)
         {
             Connection = (SqlConnection)provider.GetConnection();
+            connectionProvider = provider;
         }
 
         #region Transactions
         protected void InitCommand(SqlCommand command)
         {
             command.Connection = Connection;
-            if (null != Transaction)
+            if (null != connectionProvider.GetTransaction())
             {
-                command.Transaction = Transaction;
+                command.Transaction = (SqlTransaction)connectionProvider.GetTransaction();
             }
-            if(Connection.State != System.Data.ConnectionState.Open)
+            if(Connection.State != ConnectionState.Open)
             {
                 Connection.Open();
             }
         }
         protected void BeginTransaction()
         {
-            if (Connection.State != System.Data.ConnectionState.Open)
-            {
-                Connection.Open();
-            }
-            Transaction = Connection.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+            connectionProvider.BeginTransaction();
         }
-        protected void BeginTransaction(System.Data.IsolationLevel isoLevel)
+        protected void BeginTransaction(IsolationLevel isoLevel)
         {
-            Transaction = Connection.BeginTransaction(isoLevel);
+            connectionProvider.BeginTransaction(isoLevel);
         }
         protected void CommitTransaction()
         {
-            Transaction.Commit();
-            Transaction = null;
+            connectionProvider.CommitTransaction();
         }
         protected void RollbackTransaction()
         {
-            Transaction.Rollback();
-            Transaction = null;
+            connectionProvider.RollbackTransaction();
         }
         #endregion
 
@@ -70,50 +67,5 @@ namespace LHR.DAL.SQL
         }
         #endregion
 
-        #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // dispose managed state (managed objects).
-                    if(null!= Transaction)
-                    {
-                        CommitTransaction();
-                    }
-                    if (System.Data.ConnectionState.Open == Connection.State)
-                    {
-                        Connection.Close();
-                    }
-                }
-                if (null != Transaction)
-                {
-                    Transaction.Dispose();
-                }
-                if (null != Connection)
-                {
-                    Connection.Dispose();
-                }
-                disposedValue = true;
-            }
-        }
-        // override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        ~DALBase()
-        {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-            Dispose(false);
-        }
-        // This code added to correctly implement the disposable pattern.
-        void IDisposable.Dispose()
-        {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-            Dispose(true);
-            // uncomment the following line if the finalizer is overridden above.
-            GC.SuppressFinalize(this);
-        }
-        #endregion
     }
 }

@@ -68,7 +68,8 @@ namespace LHR.MVC
             //services.AddMvc().AddControllersAsServices(assemblies);
 
             services.AddMvc(
-                options => {
+                options =>
+                {
                     // Add global filters
                     options.Filters.Add(new Filters.ErrorHandlerFilter());
                 });
@@ -106,11 +107,13 @@ namespace LHR.MVC
                 options.ViewLocationExpanders.Add(new LHRViewLocationExpander(serviceAppSettings));
             });
             // Init core DI Manager
-            DIManager coreDIManager = new DIManager();
+            DIManager coreDIManager = new DIManager(serviceAppSettings.Value);
             //Manage DI
             DIProvider diProvider = new DIProvider(serviceAppSettings.Value, rootFileProvider, services, coreDIManager);
             diProvider.LoadLibraries();
             diProvider.RegisterDependencies();
+            //TODO: change to dispose with ninject container
+            coreDIManager.Dispose();
         }
         private IHostingEnvironment CurrentEnvironment { get; set; }
 
