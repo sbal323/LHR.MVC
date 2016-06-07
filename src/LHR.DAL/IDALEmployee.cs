@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LHR.Types;
+using LHR.Types.CoreHR;
 
 namespace LHR.DAL
 {

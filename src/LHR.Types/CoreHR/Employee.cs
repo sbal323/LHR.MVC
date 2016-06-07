@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LHR.Types.Base;
 
-namespace LHR.Types
+namespace LHR.Types.CoreHR
 {
-    public class Employee: TypeBase
+    public class Employee: EntityBase
     {
         public string FullName { get; set; }
         public string FirstName { get; set; }

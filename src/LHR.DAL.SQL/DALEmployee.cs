@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using LHR.DAL;
-using LHR.Types;
+using LHR.Types.CoreHR;
+using LHR.Types.Base;
 //using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace LHR.DAL.SQL
 {
@@ -14,15 +16,34 @@ namespace LHR.DAL.SQL
         }
         Employee IDALEmployee.Get(int id)
         {
-                return new Employee()
-                {
-                    FullName = "Sergey Balog",
-                    FirstName = "Sergey",
-                    LastName = "Balog",
-                    Id = 1,
-                    Created = new DateTime(2005, 1, 1),
-                    Author = "System Account"
-                };
+            Employee empl = new Employee()
+            {
+                FullName = "Sergey Balog",
+                FirstName = "Sergey",
+                LastName = "Balog",
+                Id = 1,
+                Created = new DateTime(2005, 1, 1),
+                Author = "System Account",
+            };
+            empl.CustomFields.Add(new LHRFieldValue()
+            {
+                FieldName = "Bank Details",
+                Value = "U56478239 Banka Strausse NNTM",
+                Type = typeof(string).ToString()
+            });
+            empl.CustomFields.Add(new LHRFieldValue()
+            {
+                FieldName = "Annual bonus",
+                Value = 1890,
+                Type = typeof(decimal).ToString()
+            });
+            empl.CustomFields.Add(new LHRFieldValue()
+            {
+                FieldName = "External ID",
+                Value = "{C0809003-C4CE-4EA6-9ED5-61A4E45B2703}",
+                Type = typeof(Guid).ToString()
+            });
+            return empl;
         }
         
         Employee IDALEmployee.GetByCountry(int countryId)

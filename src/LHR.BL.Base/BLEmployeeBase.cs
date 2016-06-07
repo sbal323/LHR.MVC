@@ -3,37 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LHR.BL;
-using LHR.Types;
+using LHR.Types.CoreHR;
 using LHR.DAL;
 
-namespace LHR.BL.Core
+namespace LHR.BL.Base
 {
     // This project can output the Class library as a NuGet Package.
     // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
-    public class BLEmployee : BLBase, IBLEmployee
+    public class BLEmployeeBase : BLBase, IBLEmployee
     {
         protected IDALEmployee DALEmployee { get; set; }
-        public BLEmployee(IDALEmployee dalEmployee)
+        public BLEmployeeBase(IDALEmployee dalEmployee)
         {
             DALEmployee = dalEmployee;
         }
 
-        public Employee Get(int id)
+        Employee IBLEmployee.Get(int id)
         {
             return DALEmployee.Get(id);
         }
 
-        public Employee GetByCountry(int countryId)
+        Employee IBLEmployee.GetByCountry(int countryId)
         {
             throw new NotImplementedException();
         }
 
-        public Employee GetByDepartment(int departmentId)
+        Employee IBLEmployee.GetByDepartment(int departmentId)
         {
             throw new NotImplementedException();
         }
 
-        public List<Employee> GetManagers(int employeeId)
+        List<Employee> IBLEmployee.GetManagers(int employeeId)
         {
             throw new NotImplementedException();
         }
