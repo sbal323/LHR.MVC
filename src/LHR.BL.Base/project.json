@@ -1,6 +1,6 @@
 ﻿{
   "version": "1.0.0-*",
-  "description": "LHR.BL.Core Class Library",
+  "description": "LHR.BL.Base Class Library",
   "authors": [ "bal" ],
   "tags": [ "" ],
   "projectUrl": "",

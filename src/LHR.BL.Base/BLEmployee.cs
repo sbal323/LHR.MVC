@@ -10,7 +10,7 @@ namespace LHR.BL.Core
 {
     // This project can output the Class library as a NuGet Package.
     // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
-    public class BLEmployee : IBLEmployee
+    public class BLEmployee : BLBase, IBLEmployee
     {
         protected IDALEmployee DALEmployee { get; set; }
         public BLEmployee(IDALEmployee dalEmployee)
@@ -20,7 +20,6 @@ namespace LHR.BL.Core
 
         public Employee Get(int id)
         {
-            //throw new NotImplementedException();
             return DALEmployee.Get(id);
         }
 
