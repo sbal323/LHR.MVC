@@ -25,22 +25,22 @@ namespace LHR.DAL.SQL
                 Created = new DateTime(2005, 1, 1),
                 Author = "System Account",
             };
-            empl.CustomFields.Add(new LHRFieldValue()
+            empl.CustomFieldsValues.Add(new LHRFieldValue()
             {
                 FieldName = "Bank Details",
                 Value = "U56478239 Banka Strausse NNTM",
                 Type = typeof(string).ToString()
             });
-            empl.CustomFields.Add(new LHRFieldValue()
+            empl.CustomFieldsValues.Add(new LHRFieldValue()
             {
                 FieldName = "Annual bonus",
-                Value = 1890,
+                Value = 1890.ToString(),
                 Type = typeof(decimal).ToString()
             });
-            empl.CustomFields.Add(new LHRFieldValue()
+            empl.CustomFieldsValues.Add(new LHRFieldValue()
             {
                 FieldName = "External ID",
-                Value = "{C0809003-C4CE-4EA6-9ED5-61A4E45B2703}",
+                Value = new Guid("{C0809003-C4CE-4EA6-9ED5-61A4E45B2703}").ToString(),
                 Type = typeof(Guid).ToString()
             });
             return empl;
