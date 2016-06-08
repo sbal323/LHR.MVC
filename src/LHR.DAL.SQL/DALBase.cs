@@ -67,5 +67,23 @@ namespace LHR.DAL.SQL
         }
         #endregion
 
+        #region Functions
+        protected bool RecordExists(SqlCommand command)
+        {
+            return (int)ExecuteScalar(command) > 0;
+        }
+        public bool TableExists(string TableName)
+        {
+            string commandSQL = $"SELECT count(*) as IsExists FROM dbo.sysobjects where id = object_id('{TableName}')";
+            SqlCommand cmd = new SqlCommand(commandSQL);
+            int result = (int)ExecuteScalar(cmd);
+            cmd.Dispose();
+            if (0 == result)
+                return false;
+            else
+                return true;
+        }
+        #endregion
+
     }
 }

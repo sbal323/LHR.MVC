@@ -35,7 +35,7 @@ namespace LHR.Types.System
             Dynamic = 2
         }
         /// <summary>
-        /// Setting Identifier for futere reference
+        /// Setting Identifier for future reference
         /// </summary>
         [FieldName(DISettingFieldNames.Id)]
         public Guid Id { get; set; }

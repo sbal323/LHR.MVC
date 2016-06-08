@@ -21,6 +21,8 @@ using Microsoft.Extensions.OptionsModel;
 using System.IO;
 using LHR.Types.System;
 using LHR.Core;
+using LHR.MVC.Services.Core;
+using LHR.MVC.Services.Updates;
 
 namespace LHR.MVC
 {
@@ -59,14 +61,6 @@ namespace LHR.MVC
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            //List<Assembly> assemblies = new List<Assembly>();
-            //LHRPluginAssemblyProvider pap = new LHRPluginAssemblyProvider(new PhysicalFileProvider(CurrentEnvironment.WebRootPath + "\\.."),
-            //        PlatformServices.Default.AssemblyLoadContextAccessor,
-            //        PlatformServices.Default.AssemblyLoaderContainer);
-            //assemblies.Add(this.GetType().GetTypeInfo().Assembly);
-            //assemblies.AddRange(pap.CandidateAssemblies);
-            //services.AddMvc().AddControllersAsServices(assemblies);
-
             services.AddMvc(
                 options =>
                 {
@@ -78,7 +72,6 @@ namespace LHR.MVC
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            //typeof(IServiceCollection).GetTypeInfo().DeclaredMethods.Where(x => x.Name == "AddTransient").First().Invoke(services, new object[] { contract, implementation });
             // Add options
             services.AddOptions();
             services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
@@ -106,14 +99,16 @@ namespace LHR.MVC
                 options.FileProvider = rootFileProvider;
                 options.ViewLocationExpanders.Add(new LHRViewLocationExpander(serviceAppSettings));
             });
-            // Init core DI Manager
-            DIManager coreDIManager = new DIManager(serviceAppSettings.Value);
-            //Manage DI
-            DIProvider diProvider = new DIProvider(serviceAppSettings.Value, rootFileProvider, services, coreDIManager);
+            // Init core
+            CoreMnager coreManager = new CoreMnager(serviceAppSettings.Value);
+            // Apply Updates
+            UpdateManager upm = new UpdateManager(coreManager);
+            UpdateVersion fromVersion = new UpdateVersion(coreManager.CoreGeneralSettingsManager.GetCurrentSystemVersion().Value);
+            upm.Update(fromVersion, new UpdateVersion(1, 0, 0));
+            // Manage DI
+            DIProvider diProvider = new DIProvider(serviceAppSettings.Value, rootFileProvider, services, coreManager.CoreDIManager);
             diProvider.LoadLibraries();
             diProvider.RegisterDependencies();
-            //TODO: change to dispose with ninject container
-            coreDIManager.Dispose();
         }
         private IHostingEnvironment CurrentEnvironment { get; set; }
 

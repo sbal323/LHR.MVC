@@ -1,35 +1,29 @@
-﻿using System;
+﻿using LHR.DAL.SQL;
+using LHR.DAL.SQL.System;
+using LHR.Types.System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LHR.Types.System;
-using LHR.DAL.SQL.System;
-using LHR.DAL.SQL;
 
 namespace LHR.Core
 {
-    public class DIManager
+    public class DBManager
     {
-        List<DISetting> diSettings;
         AppSettings settings;
-        DALDI dal;
+        DALDB dal;
         SQLConnectionProvider cnnProvider;
-        public DIManager(AppSettings appSettings)
+        public DBManager(AppSettings appSettings)
         {
-            diSettings = new List<DISetting>();
             settings = appSettings;
             //TODO: replace with DI
             SQLConnectionDetailsProvider cdProvider = new SQLConnectionDetailsProvider(Newtonsoft.Json.JsonConvert.SerializeObject(settings));
             cnnProvider = new SQLConnectionProvider(cdProvider);
-            dal = new DALDI(cnnProvider);
+            dal = new DALDB(cnnProvider);
         }
-        public void AddSetting(DISetting setting)
+        public void CreateTable(string tableName, string sql)
         {
-            dal.AddSetting(setting);
-        }
-        public List<DISetting> GetSettings()
-        {
-            return dal.GetAllSettings();
+            dal.CreateTable(tableName, sql);
         }
     }
 }
