@@ -22,7 +22,7 @@ namespace LHR.DAL.SQL.System
                 return null;
             }
             ORMManager orm = new ORMManager();
-            string commandSQL = $"SELECT * From GeneralSettings Where Id = @Id";
+            string commandSQL = $"SELECT * From {TableNames.GeneralSettings} Where Id = @Id";
             SqlCommand cmd = new SqlCommand(commandSQL);
             cmd.Parameters.AddWithValue("@Id", Id);
             var rdr = ExecuteReader(cmd);
@@ -34,12 +34,12 @@ namespace LHR.DAL.SQL.System
         public void AddSetting(GeneralSetting setting)
         {
             ORMManager orm = new ORMManager();
-            string commandSQL = $"SELECT count(*) From GeneralSettings Where Id = @Id";
+            string commandSQL = $"SELECT count(*) From {TableNames.GeneralSettings} Where Id = @Id";
             SqlCommand cmd = new SqlCommand(commandSQL);
             cmd.Parameters.AddWithValue("@Id", setting.Id);
             if (!RecordExists(cmd))
             {
-                string commandSQLInsert = @"INSERT INTO GeneralSettings
+                string commandSQLInsert = $@"INSERT INTO {TableNames.GeneralSettings}
                                        ([Id]
                                        ,[Name]
                                        ,[Description]

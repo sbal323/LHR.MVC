@@ -6,6 +6,7 @@ using LHR.Types.System;
 using System.Data.SqlClient;
 using LHR.DAL.SQL.ORM;
 using System.Data;
+using LHR.Types.Constants;
 
 namespace LHR.DAL.SQL.System
 {
@@ -18,7 +19,7 @@ namespace LHR.DAL.SQL.System
         {
             List<DISetting> result;
             ORMManager orm = new ORMManager();
-            string commandSQL = "SELECT * From DISettings";
+            string commandSQL = $"SELECT * From {TableNames.DISettings}";
             SqlCommand cmd = new SqlCommand(commandSQL);
             SqlDataReader rdr = ExecuteReader(cmd);
             result = orm.MapDataToBusinessEntityCollection<DISetting>(rdr);
@@ -28,7 +29,7 @@ namespace LHR.DAL.SQL.System
         public void AddSetting(DISetting setting)
         {
             ORMManager orm = new ORMManager();
-            string commandSQL = $"SELECT count(*) From DISettings Where Id = @Id" ;
+            string commandSQL = $"SELECT count(*) From {TableNames.DISettings} Where Id = @Id" ;
             SqlCommand cmd = new SqlCommand(commandSQL);
             cmd.Parameters.AddWithValue("@Id", setting.Id);
             if (!RecordExists(cmd))

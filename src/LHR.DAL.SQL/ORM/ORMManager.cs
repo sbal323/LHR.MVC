@@ -13,6 +13,12 @@ namespace LHR.DAL.SQL.ORM
 {
     public class ORMManager
     {
+        /// <summary>
+        /// Map data to business entity collection
+        /// </summary>
+        /// <typeparam name="T">Type of entity</typeparam>
+        /// <param name="dr">Datareader with data</param>
+        /// <returns>Business entity collection</returns>
         public List<T> MapDataToBusinessEntityCollection<T>(IDataReader dr)
         where T : new()
         {
@@ -24,11 +30,23 @@ namespace LHR.DAL.SQL.ORM
             dr.Close();
             return entitys;
         }
+        /// <summary>
+        /// Map data to business entity
+        /// </summary>
+        /// <typeparam name="T">Type of entity</typeparam>
+        /// <param name="dr">Datareader with data</param>
+        /// <returns>Business entity</returns>
         public T MapDataToBusinessEntity<T>(IDataReader dr)
         where T : new()
         {
             return MapDataToBusinessEntity<T>(dr, true, GetProperties(typeof(T)));
         }
+        /// <summary>
+        /// Set value for SQL parameters
+        /// </summary>
+        /// <typeparam name="T">Type of entity</typeparam>
+        /// <param name="parameters">SqlParameterCollection containing required parameters</param>
+        /// <param name="entity">Business entity</param>
         public void MapEntityToSQLParameters<T>(SqlParameterCollection parameters, T entity)
         where T : new()
         {
@@ -51,6 +69,14 @@ namespace LHR.DAL.SQL.ORM
                 }
             }
         }
+        /// <summary>
+        /// Map data to business entity
+        /// </summary>
+        /// <typeparam name="T">Type of entity</typeparam>
+        /// <param name="dr">Datareader with data</param>
+        /// <param name="readData">Specify id Read() on datareader required</param>
+        /// <param name="properties">Hashtable with type PropertyInfo</param>
+        /// <returns>Business entity</returns>
         public T MapDataToBusinessEntity<T>(IDataReader dr, bool readData, Hashtable properties)
         where T : new()
         {
@@ -92,6 +118,11 @@ namespace LHR.DAL.SQL.ORM
             }
             return newObject;
         }
+        /// <summary>
+        /// Get propertyinfo collection for given entity type
+        /// </summary>
+        /// <param name="businessEntityType">Entity type</param>
+        /// <returns></returns>
         private Hashtable GetProperties(Type businessEntityType)
         {
             Hashtable hashtable = new Hashtable();
@@ -108,6 +139,11 @@ namespace LHR.DAL.SQL.ORM
             }
             return hashtable;
         }
+        /// <summary>
+        /// Get default value for type
+        /// </summary>
+        /// <param name="type">Type to get default value.</param>
+        /// <returns></returns>
         private object GetDefault(Type type)
         {
             if (type.IsValueType)
