@@ -42,7 +42,7 @@ namespace LHR.MVC.Services.Updates.Updates
 					(
 					[Id] ASC
 					))";
-            manager.Core.CoreDDBManager.CreateTable(tableName,sql);
+            manager.Core.CoreDBBManager.CreateTable(tableName,sql);
             tableName = TableNames.GeneralSettings;
             sql = $@"CREATE TABLE {tableName}(
 					[Id] [uniqueidentifier] NOT NULL,
@@ -56,7 +56,7 @@ namespace LHR.MVC.Services.Updates.Updates
 					(
 					[Id] ASC
 					))";
-            manager.Core.CoreDDBManager.CreateTable(tableName, sql);
+            manager.Core.CoreDBBManager.CreateTable(tableName, sql);
             //Register DI Components
             DISetting setting;
             setting = new DISetting

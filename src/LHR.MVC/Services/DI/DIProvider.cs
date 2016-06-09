@@ -9,6 +9,7 @@ using Microsoft.AspNet.FileProviders;
 using Microsoft.Extensions.DependencyInjection;
 using LHR.Types.System;
 using LHR.Core;
+using LHR.Core.Contracts;
 
 namespace LHR.MVC.Services.DI
 {
@@ -18,9 +19,9 @@ namespace LHR.MVC.Services.DI
         AppSettings settings;
         PhysicalFileProvider rootFileProvider;
         IServiceCollection services;
-        DIManager coreDIManager;
+        IDIManager coreDIManager;
         // Load libraries for dynamic dependencies
-        public DIProvider(AppSettings appSettings, PhysicalFileProvider fileProvider, IServiceCollection serviceCollection, DIManager diManager)
+        public DIProvider(AppSettings appSettings, PhysicalFileProvider fileProvider, IServiceCollection serviceCollection, IDIManager diManager)
         {
             settings = appSettings;
             rootFileProvider = fileProvider;

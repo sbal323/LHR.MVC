@@ -7,15 +7,16 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using LHR.DAL;
 
 namespace LHR.DAL.SQL.System
 {
-    public class DALGeneralSettings : DALBase
+    public class DALGeneralSettings : DALBase, IDALGeneralSettings
     {
         public DALGeneralSettings(ITransactionalConnectionProvider provider) : base(provider)
         {
         }
-        public GeneralSetting GetSetting(Guid Id)
+        GeneralSetting IDALGeneralSettings.GetSetting(Guid Id)
         {
             if (!TableExists(TableNames.GeneralSettings))
             {
@@ -31,7 +32,7 @@ namespace LHR.DAL.SQL.System
             else
                 return null;    
         }
-        public void AddSetting(GeneralSetting setting)
+        void IDALGeneralSettings.AddSetting(GeneralSetting setting)
         {
             ORMManager orm = new ORMManager();
             string commandSQL = $"SELECT count(*) From {TableNames.GeneralSettings} Where Id = @Id";

@@ -1,5 +1,7 @@
 ﻿using LHR.Core;
+using LHR.Core.Contracts;
 using LHR.Types.System;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +11,15 @@ namespace LHR.MVC.Services.Core
 {
     public class CoreMnager
     {
-        public DIManager CoreDIManager { get; set; }
-        public DBManager CoreDDBManager { get; set; }
-        public GeneralSettingsManager CoreGeneralSettingsManager { get; set; }
+        public IDIManager CoreDIManager { get; set; }
+        public IDBManager CoreDBBManager { get; set; }
+        public IGeneralSettingsManager CoreGeneralSettingsManager { get; set; }
         public CoreMnager(AppSettings appSettings)
         {
-            CoreDIManager = new DIManager(appSettings);
-            CoreDDBManager = new DBManager(appSettings);
-            CoreGeneralSettingsManager = new GeneralSettingsManager(appSettings);
+            NinjectKernelProvider ninject = new NinjectKernelProvider(appSettings);
+            CoreDIManager = ninject.Kernel.Get<IDIManager>();
+            CoreDBBManager = ninject.Kernel.Get<IDBManager>();
+            CoreGeneralSettingsManager = ninject.Kernel.Get<IGeneralSettingsManager>();
         }
     }
 }

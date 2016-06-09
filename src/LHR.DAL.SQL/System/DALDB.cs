@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace LHR.DAL.SQL.System
 {
-    public class DALDB : DALBase
+    public class DALDB : DALBase, IDALDB
     {
         public DALDB(ITransactionalConnectionProvider provider) : base(provider)
         {
         }
         
-        public void CreateTable(string tableName, string sql)
+        void IDALDB.CreateTable(string tableName, string sql)
         {
             if (!TableExists(tableName))
             {

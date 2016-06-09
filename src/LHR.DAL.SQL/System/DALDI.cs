@@ -10,12 +10,12 @@ using LHR.Types.Constants;
 
 namespace LHR.DAL.SQL.System
 {
-    public class DALDI : DALBase
+    public class DALDI : DALBase, IDALDI
     {
         public DALDI(ITransactionalConnectionProvider provider) : base(provider)
         {
         }
-        public List<DISetting> GetAllSettings()
+        List<DISetting> IDALDI.GetAllSettings()
         {
             List<DISetting> result;
             ORMManager orm = new ORMManager();
@@ -26,7 +26,7 @@ namespace LHR.DAL.SQL.System
             cmd.Dispose();
             return result;
         }
-        public void AddSetting(DISetting setting)
+        void IDALDI.AddSetting(DISetting setting)
         {
             ORMManager orm = new ORMManager();
             string commandSQL = $"SELECT count(*) From {TableNames.DISettings} Where Id = @Id" ;

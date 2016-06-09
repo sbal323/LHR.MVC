@@ -26,6 +26,7 @@ namespace LHR.MVC.Controllers
         {
             var empl = BLEmployee.Get(0);
             return View(empl);
+
         }
 
         public IActionResult About()

@@ -5,29 +5,24 @@ using System.Threading.Tasks;
 using LHR.Types.System;
 using LHR.DAL.SQL.System;
 using LHR.DAL.SQL;
+using LHR.DAL;
+using Ninject;
+using LHR.Core.Contracts;
 
 namespace LHR.Core
 {
-    public class DIManager
+    public class DIManager: IDIManager
     {
-        //List<DISetting> diSettings;
-        AppSettings settings;
-        DALDI dal;
-        SQLConnectionProvider cnnProvider;
-        public DIManager(AppSettings appSettings)
+        IDALDI dal;
+        public DIManager(NinjectKernelProvider ninject)
         {
-            //diSettings = new List<DISetting>();
-            settings = appSettings;
-            //TODO: replace with DI
-            SQLConnectionDetailsProvider cdProvider = new SQLConnectionDetailsProvider(Newtonsoft.Json.JsonConvert.SerializeObject(settings));
-            cnnProvider = new SQLConnectionProvider(cdProvider);
-            dal = new DALDI(cnnProvider);
+            dal = ninject.Kernel.Get<IDALDI>();
         }
-        public void AddSetting(DISetting setting)
+        void IDIManager.AddSetting(DISetting setting)
         {
             dal.AddSetting(setting);
         }
-        public List<DISetting> GetSettings()
+        List<DISetting> IDIManager.GetSettings()
         {
             return dal.GetAllSettings();
         }

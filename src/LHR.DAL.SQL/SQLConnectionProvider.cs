@@ -12,6 +12,7 @@ namespace LHR.DAL.SQL
         public IConnectionDetailsProvider ConnectionDetails { get; set; }
         private SqlConnection connection;
         private SqlTransaction transaction;
+        public Guid Id = Guid.NewGuid();
 
         public SQLConnectionProvider(IConnectionDetailsProvider connectionDetails)
         {

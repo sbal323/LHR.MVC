@@ -1,7 +1,10 @@
-﻿using LHR.DAL.SQL;
+﻿using LHR.Core.Contracts;
+using LHR.DAL;
+using LHR.DAL.SQL;
 using LHR.DAL.SQL.System;
 using LHR.Types.Constants.Entities;
 using LHR.Types.System;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,25 +12,19 @@ using System.Threading.Tasks;
 
 namespace LHR.Core
 {
-    public class GeneralSettingsManager
+    public class GeneralSettingsManager: IGeneralSettingsManager
     {
-        AppSettings settings;
-        DALGeneralSettings dal;
-        SQLConnectionProvider cnnProvider;
+        IDALGeneralSettings dal;
         GeneralSetting currentSystemVersion;
-        public GeneralSettingsManager(AppSettings appSettings)
+        public GeneralSettingsManager(NinjectKernelProvider ninject)
         {
-            settings = appSettings;
-            //TODO: replace with DI
-            SQLConnectionDetailsProvider cdProvider = new SQLConnectionDetailsProvider(Newtonsoft.Json.JsonConvert.SerializeObject(settings));
-            cnnProvider = new SQLConnectionProvider(cdProvider);
-            dal = new DALGeneralSettings(cnnProvider);
+            dal = ninject.Kernel.Get<IDALGeneralSettings>();
         }
-        public void AddSetting(GeneralSetting gs)
+        void IGeneralSettingsManager.AddSetting(GeneralSetting gs)
         {
             dal.AddSetting(gs);
         }
-        public GeneralSetting GetCurrentSystemVersion()
+        GeneralSetting IGeneralSettingsManager.GetCurrentSystemVersion()
         {
             if (null == currentSystemVersion)
             {
