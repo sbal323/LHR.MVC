@@ -14,6 +14,7 @@ namespace LHR.Core
         AppSettings settings;
         DALGeneralSettings dal;
         SQLConnectionProvider cnnProvider;
+        GeneralSetting currentSystemVersion;
         public GeneralSettingsManager(AppSettings appSettings)
         {
             settings = appSettings;
@@ -28,16 +29,20 @@ namespace LHR.Core
         }
         public GeneralSetting GetCurrentSystemVersion()
         {
-            var vers = dal.GetSetting(GeleralSettingsGUIDs.SystemVersion);
-            if (null != vers)
-                return vers;
-            else
+            if (null == currentSystemVersion)
             {
-                return new GeneralSetting
+                var vers = dal.GetSetting(GeleralSettingsGUIDs.SystemVersion);
+                if (null != vers)
+                    currentSystemVersion = vers;
+                else
                 {
-                    Value = "0.0.0"
-                };
+                    currentSystemVersion = new GeneralSetting
+                    {
+                        Value = "0.0.0"
+                    };
+                }
             }
+            return currentSystemVersion;
         }
     }
 }

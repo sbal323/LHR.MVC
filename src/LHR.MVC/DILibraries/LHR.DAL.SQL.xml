@@ -4,5 +4,53 @@
         <name>LHR.DAL.SQL</name>
     </assembly>
     <members>
+        <member name="M:LHR.DAL.SQL.ORM.ORMManager.MapDataToBusinessEntityCollection``1(System.Data.IDataReader)">
+            <summary>
+            Map data to business entity collection
+            </summary>
+            <typeparam name="T">Type of entity</typeparam>
+            <param name="dr">Datareader with data</param>
+            <returns>Business entity collection</returns>
+        </member>
+        <member name="M:LHR.DAL.SQL.ORM.ORMManager.MapDataToBusinessEntity``1(System.Data.IDataReader)">
+            <summary>
+            Map data to business entity
+            </summary>
+            <typeparam name="T">Type of entity</typeparam>
+            <param name="dr">Datareader with data</param>
+            <returns>Business entity</returns>
+        </member>
+        <member name="M:LHR.DAL.SQL.ORM.ORMManager.MapEntityToSQLParameters``1(System.Data.SqlClient.SqlParameterCollection,``0)">
+            <summary>
+            Set value for SQL parameters
+            </summary>
+            <typeparam name="T">Type of entity</typeparam>
+            <param name="parameters">SqlParameterCollection containing required parameters</param>
+            <param name="entity">Business entity</param>
+        </member>
+        <member name="M:LHR.DAL.SQL.ORM.ORMManager.MapDataToBusinessEntity``1(System.Data.IDataReader,System.Boolean,System.Collections.Hashtable)">
+            <summary>
+            Map data to business entity
+            </summary>
+            <typeparam name="T">Type of entity</typeparam>
+            <param name="dr">Datareader with data</param>
+            <param name="readData">Specify id Read() on datareader required</param>
+            <param name="properties">Hashtable with type PropertyInfo</param>
+            <returns>Business entity</returns>
+        </member>
+        <member name="M:LHR.DAL.SQL.ORM.ORMManager.GetProperties(System.Type)">
+            <summary>
+            Get propertyinfo collection for given entity type
+            </summary>
+            <param name="businessEntityType">Entity type</param>
+            <returns></returns>
+        </member>
+        <member name="M:LHR.DAL.SQL.ORM.ORMManager.GetDefault(System.Type)">
+            <summary>
+            Get default value for type
+            </summary>
+            <param name="type">Type to get default value.</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

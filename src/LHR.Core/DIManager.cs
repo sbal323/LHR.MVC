@@ -10,13 +10,13 @@ namespace LHR.Core
 {
     public class DIManager
     {
-        List<DISetting> diSettings;
+        //List<DISetting> diSettings;
         AppSettings settings;
         DALDI dal;
         SQLConnectionProvider cnnProvider;
         public DIManager(AppSettings appSettings)
         {
-            diSettings = new List<DISetting>();
+            //diSettings = new List<DISetting>();
             settings = appSettings;
             //TODO: replace with DI
             SQLConnectionDetailsProvider cdProvider = new SQLConnectionDetailsProvider(Newtonsoft.Json.JsonConvert.SerializeObject(settings));

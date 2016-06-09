@@ -34,7 +34,7 @@ namespace LHR.DAL.SQL.System
             cmd.Parameters.AddWithValue("@Id", setting.Id);
             if (!RecordExists(cmd))
             {
-                string commandSQLInsert = @"INSERT INTO DISettings
+                string commandSQLInsert = $@"INSERT INTO {TableNames.DISettings}
                    ([Id]
                     ,[ContractAssemblyName]
                     ,[ContractTypeName]

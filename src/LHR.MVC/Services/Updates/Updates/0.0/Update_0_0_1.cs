@@ -99,8 +99,8 @@ namespace LHR.MVC.Services.Updates.Updates
             {
                 Id = DISettingsGUIDs.IConnectionProvider,
                 Scope = DISetting.DIScope.Scoped,
-                ContractAssemblyName = typeof(IConnectionProvider).Assembly.FullName,
-                ContractTypeName = typeof(IConnectionProvider).FullName,
+                ContractAssemblyName = typeof(ITransactionalConnectionProvider).Assembly.FullName,
+                ContractTypeName = typeof(ITransactionalConnectionProvider).FullName,
                 ContractLibraryReferenceType = DISetting.DILibraryReferenceType.Static,
                 ImplementationAssemblyName = DIDefaultImplementation.DALSQLAssemblyName,
                 ImplementationTypeName = DIDefaultImplementation.SQLConnectionProvider,
