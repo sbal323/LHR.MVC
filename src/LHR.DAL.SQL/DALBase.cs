@@ -19,7 +19,7 @@ namespace LHR.DAL.SQL
         }
 
         #region Transactions
-        protected void InitCommand(SqlCommand command)
+        protected SqlCommand InitCommand(SqlCommand command)
         {
             command.Connection = Connection;
             if (null != connectionProvider.GetTransaction())
@@ -30,6 +30,7 @@ namespace LHR.DAL.SQL
             {
                 Connection.Open();
             }
+            return command;
         }
         protected void BeginTransaction()
         {
@@ -52,18 +53,15 @@ namespace LHR.DAL.SQL
         #region Readers
         protected int ExecuteNonQuery(SqlCommand command)
         {
-            InitCommand(command);
-            return command.ExecuteNonQuery();
+            return InitCommand(command).ExecuteNonQuery();
         }
         protected object ExecuteScalar(SqlCommand command)
         {
-            InitCommand(command);
-            return command.ExecuteScalar();
+            return InitCommand(command).ExecuteScalar();
         }
         protected SqlDataReader ExecuteReader(SqlCommand command)
         {
-            InitCommand(command);
-            return command.ExecuteReader();
+            return InitCommand(command).ExecuteReader();
         }
         #endregion
 
