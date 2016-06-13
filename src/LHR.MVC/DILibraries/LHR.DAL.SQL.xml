@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>LHR.DAL.SQL</name>
+        <name>Lhr.Dal.Sql</name>
     </assembly>
     <members>
         <member name="M:Lhr.Dal.Sql.Orm.OrmManager.MapDataToBusinessEntityCollection``1(System.Data.IDataReader)">
