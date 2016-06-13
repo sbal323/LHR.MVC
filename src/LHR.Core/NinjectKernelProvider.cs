@@ -12,7 +12,7 @@ namespace LHR.Core
         public IKernel Kernel { get; set; }
         public NinjectKernelProvider(AppSettings appSettings)
         {
-             Kernel = new StandardKernel(new CoreModule() { ApplicationSettings = appSettings, KernelManager = this});
+             Kernel = new StandardKernel(new CoreNinjectModule() { ApplicationSettings = appSettings});
         }
     }
 }

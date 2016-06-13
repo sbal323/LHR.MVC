@@ -1,4 +1,4 @@
-﻿using LHR.Core.Contracts;
+﻿using LHR.BL.Core;
 using LHR.DAL;
 using LHR.DAL.SQL;
 using LHR.DAL.SQL.System;
@@ -15,9 +15,9 @@ namespace LHR.Core
     public class DBManager: IDBManager
     {
         IDALDB dal;
-        public DBManager(NinjectKernelProvider ninject)
+        public DBManager(IDALDB dalDB)
         {
-            dal = ninject.Kernel.Get<IDALDB>();
+            dal = dalDB;
         }
         void IDBManager.CreateTable(string tableName, string sql)
         {

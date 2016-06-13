@@ -1,4 +1,4 @@
-﻿using LHR.Core.Contracts;
+﻿using LHR.BL.Core;
 using LHR.DAL;
 using LHR.DAL.SQL;
 using LHR.DAL.SQL.System;
@@ -16,9 +16,9 @@ namespace LHR.Core
     {
         IDALGeneralSettings dal;
         GeneralSetting currentSystemVersion;
-        public GeneralSettingsManager(NinjectKernelProvider ninject)
+        public GeneralSettingsManager(IDALGeneralSettings dalGeneralSettings)
         {
-            dal = ninject.Kernel.Get<IDALGeneralSettings>();
+            dal = dalGeneralSettings;
         }
         void IGeneralSettingsManager.AddSetting(GeneralSetting gs)
         {

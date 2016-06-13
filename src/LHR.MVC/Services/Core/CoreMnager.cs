@@ -1,5 +1,5 @@
-﻿using LHR.Core;
-using LHR.Core.Contracts;
+﻿using LHR.BL.Core;
+using LHR.Core;
 using LHR.Types.System;
 using Ninject;
 using System;

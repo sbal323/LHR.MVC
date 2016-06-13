@@ -9,7 +9,7 @@ using Microsoft.AspNet.FileProviders;
 using Microsoft.Extensions.DependencyInjection;
 using LHR.Types.System;
 using LHR.Core;
-using LHR.Core.Contracts;
+using LHR.BL.Core;
 
 namespace LHR.MVC.Services.DI
 {
