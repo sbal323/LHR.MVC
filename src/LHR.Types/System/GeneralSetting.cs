@@ -1,11 +1,11 @@
-﻿using LHR.Types.Constants.Entities;
-using LHR.Types.ORM;
+﻿using Lhr.Types.Constants.Entities;
+using Lhr.Types.Orm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Types.System
+namespace Lhr.Types.System
 {
     /// <summary>
     /// General application settings

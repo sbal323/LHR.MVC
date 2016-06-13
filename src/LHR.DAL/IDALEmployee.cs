@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LHR.Types.CoreHR;
+using Lhr.Types.CoreHr;
 
-namespace LHR.DAL
+namespace Lhr.Dal
 {
-    public interface IDALEmployee
+    public interface IDalEmployee
     {
         Employee Get(int id);
         Employee GetByDepartment(int departmentId);

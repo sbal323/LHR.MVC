@@ -6,16 +6,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Reflection;
 using Microsoft.AspNet.Mvc.Controllers;
-using LHR.MVC.Services;
+using Lhr.Mvc.Services;
 using Microsoft.Extensions.OptionsModel;
-using LHR.Types.System;
+using Lhr.Types.System;
 
-namespace LHR.MVC
+namespace Lhr.Mvc
 {
-    public class LHRViewLocationExpander : IViewLocationExpander
+    public class LhrViewLocationExpander : IViewLocationExpander
     {
         private AppSettings settings;
-        public LHRViewLocationExpander(IOptions<AppSettings> appSettings) {
+        public LhrViewLocationExpander(IOptions<AppSettings> appSettings) {
             settings = appSettings.Value;
         }
         //private const string PathToCoreViewsDirectory = "";//"/approot/packages/LHR.MVC/1.0.0/root";

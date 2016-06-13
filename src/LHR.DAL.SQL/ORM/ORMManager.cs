@@ -1,4 +1,4 @@
-﻿using LHR.Types.ORM;
+﻿using Lhr.Types.Orm;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,9 +9,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 
-namespace LHR.DAL.SQL.ORM
+namespace Lhr.Dal.Sql.Orm
 {
-    public class ORMManager
+    public class OrmManager
     {
         /// <summary>
         /// Map data to business entity collection

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using LHR.Types.System;
+using Lhr.Types.System;
 
-namespace LHR.DAL.SQL
+namespace Lhr.Dal.Sql
 {
-    public class SQLConnectionDetailsProvider : IConnectionDetailsProvider
+    public class SqlConnectionDetailsProvider : IConnectionDetailsProvider
     {
         string connectionString;
-        public SQLConnectionDetailsProvider(string settingsJson)
+        public SqlConnectionDetailsProvider(string settingsJson)
         {
-            connectionString = JsonConvert.DeserializeObject<AppSettings>(settingsJson).DBConnectionString;
+            connectionString = JsonConvert.DeserializeObject<AppSettings>(settingsJson).DbConnectionString;
         }
         string IConnectionDetailsProvider.GetConnectionString()
         {

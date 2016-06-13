@@ -7,21 +7,21 @@ using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.AspNet.FileProviders;
 using Microsoft.Extensions.DependencyInjection;
-using LHR.Types.System;
-using LHR.Core;
-using LHR.BL.Core;
+using Lhr.Types.System;
+using Lhr.Core;
+using Lhr.Bl.Core;
 
-namespace LHR.MVC.Services.DI
+namespace Lhr.Mvc.Services.Di
 {
-    public class DIProvider
+    public class DiProvider
     {
         List<Assembly> loadedAssemblies = new List<Assembly>();
         AppSettings settings;
         PhysicalFileProvider rootFileProvider;
         IServiceCollection services;
-        IDIManager coreDIManager;
+        IDiManager coreDIManager;
         // Load libraries for dynamic dependencies
-        public DIProvider(AppSettings appSettings, PhysicalFileProvider fileProvider, IServiceCollection serviceCollection, IDIManager diManager)
+        public DiProvider(AppSettings appSettings, PhysicalFileProvider fileProvider, IServiceCollection serviceCollection, IDiManager diManager)
         {
             settings = appSettings;
             rootFileProvider = fileProvider;
@@ -40,13 +40,13 @@ namespace LHR.MVC.Services.DI
                 }
             }
         }
-        private List<DISetting> LoadSettings()
+        private List<DiSetting> LoadSettings()
         {
             return coreDIManager.GetSettings();
         }
         public void RegisterDependencies()
         {
-            List<DISetting> loadedSettings = LoadSettings();
+            List<DiSetting> loadedSettings = LoadSettings();
             Type contract, implementation;
             loadedSettings.ForEach(setting => {
                 contract = GetDIType(setting.ContractLibraryReferenceType, setting.ContractAssemblyName, setting.ContractTypeName);
@@ -54,30 +54,30 @@ namespace LHR.MVC.Services.DI
                 RegisterService(setting.Scope, contract, implementation);
             });
         }
-        private void RegisterService(DISetting.DIScope scope, Type contract, Type implementation)
+        private void RegisterService(DiSetting.DiScope scope, Type contract, Type implementation)
         {
-            if(DISetting.DIScope.Transient == scope)
+            if(DiSetting.DiScope.Transient == scope)
             {
                 services.AddTransient(contract, implementation);
             }
-            else if (DISetting.DIScope.Instance == scope)
+            else if (DiSetting.DiScope.Instance == scope)
             {
                 services.AddInstance(contract, Activator.CreateInstance(implementation, new object[] { Newtonsoft.Json.JsonConvert.SerializeObject(settings) }));
             }
-            else if (DISetting.DIScope.Scoped == scope)
+            else if (DiSetting.DiScope.Scoped == scope)
             {
                 services.AddScoped(contract, implementation);
             }
         }
 
-        private Type GetDIType(DISetting.DILibraryReferenceType contractLibraryReferenceType, string contractAssemblyName, string contractTypeName)
+        private Type GetDIType(DiSetting.DiLibraryReferenceType contractLibraryReferenceType, string contractAssemblyName, string contractTypeName)
         {
             Type ret = null;
-            if(DISetting.DILibraryReferenceType.Static == contractLibraryReferenceType)
+            if(DiSetting.DiLibraryReferenceType.Static == contractLibraryReferenceType)
             {
                 ret = Assembly.Load(new AssemblyName(contractAssemblyName)).GetType(contractTypeName);
             }
-            else if (DISetting.DILibraryReferenceType.Dynamic == contractLibraryReferenceType)
+            else if (DiSetting.DiLibraryReferenceType.Dynamic == contractLibraryReferenceType)
             {
                 ret = loadedAssemblies.Where(x => x.FullName == contractAssemblyName).First().GetType(contractTypeName);
             }

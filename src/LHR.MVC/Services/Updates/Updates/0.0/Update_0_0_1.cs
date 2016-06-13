@@ -1,14 +1,14 @@
-﻿using LHR.BL;
-using LHR.DAL;
-using LHR.Types.Constants;
-using LHR.Types.Constants.Entities;
-using LHR.Types.System;
+﻿using Lhr.Bl;
+using Lhr.Dal;
+using Lhr.Types.Constants;
+using Lhr.Types.Constants.Entities;
+using Lhr.Types.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.MVC.Services.Updates.Updates
+namespace Lhr.Mvc.Services.Updates.Updates
 {
     public class Update_0_0_1 : IUpdate
     {
@@ -58,59 +58,59 @@ namespace LHR.MVC.Services.Updates.Updates
 					))";
             manager.Core.CoreDBBManager.CreateTable(tableName, sql);
             //Register DI Components
-            DISetting setting;
-            setting = new DISetting
+            DiSetting setting;
+            setting = new DiSetting
             {
-                Id = DISettingsGUIDs.IDALEmployee,
-                Scope = DISetting.DIScope.Transient,
-                ContractAssemblyName = typeof(IDALEmployee).Assembly.FullName,
-                ContractTypeName = typeof(IDALEmployee).FullName,
-                ContractLibraryReferenceType = DISetting.DILibraryReferenceType.Static,
-                ImplementationAssemblyName = DIDefaultImplementation.DALSQLAssemblyName,
-                ImplementationTypeName = DIDefaultImplementation.DALEmployeeSQL,
-                ImplementationLibraryReferenceType = DISetting.DILibraryReferenceType.Dynamic
+                Id = DiSettingsGuids.IDalEmployee,
+                Scope = DiSetting.DiScope.Transient,
+                ContractAssemblyName = typeof(IDalEmployee).Assembly.FullName,
+                ContractTypeName = typeof(IDalEmployee).FullName,
+                ContractLibraryReferenceType = DiSetting.DiLibraryReferenceType.Static,
+                ImplementationAssemblyName = DiDefaultImplementation.DALSQLAssemblyName,
+                ImplementationTypeName = DiDefaultImplementation.DALEmployeeSQL,
+                ImplementationLibraryReferenceType = DiSetting.DiLibraryReferenceType.Dynamic
             };
             manager.Core.CoreDIManager.AddSetting(setting);
-            setting = new DISetting
+            setting = new DiSetting
             {
-                Id = DISettingsGUIDs.IBLEmployee,
-                Scope = DISetting.DIScope.Transient,
-                ContractAssemblyName = typeof(IBLEmployee).Assembly.FullName,
-                ContractTypeName = typeof(IBLEmployee).FullName,
-                ContractLibraryReferenceType = DISetting.DILibraryReferenceType.Static,
-                ImplementationAssemblyName = DIDefaultImplementation.BLBaseAssemblyName,
-                ImplementationTypeName = DIDefaultImplementation.BLEmployeeBase,
-                ImplementationLibraryReferenceType = DISetting.DILibraryReferenceType.Dynamic
+                Id = DiSettingsGuids.IBlEmployee,
+                Scope = DiSetting.DiScope.Transient,
+                ContractAssemblyName = typeof(IBlEmployee).Assembly.FullName,
+                ContractTypeName = typeof(IBlEmployee).FullName,
+                ContractLibraryReferenceType = DiSetting.DiLibraryReferenceType.Static,
+                ImplementationAssemblyName = DiDefaultImplementation.BLBaseAssemblyName,
+                ImplementationTypeName = DiDefaultImplementation.BLEmployeeBase,
+                ImplementationLibraryReferenceType = DiSetting.DiLibraryReferenceType.Dynamic
             };
             manager.Core.CoreDIManager.AddSetting(setting);
-            setting = new DISetting
+            setting = new DiSetting
             {
-                Id = DISettingsGUIDs.IConnectionDetailsProvider,
-                Scope = DISetting.DIScope.Instance,
+                Id = DiSettingsGuids.IConnectionDetailsProvider,
+                Scope = DiSetting.DiScope.Instance,
                 ContractAssemblyName = typeof(IConnectionDetailsProvider).Assembly.FullName,
                 ContractTypeName = typeof(IConnectionDetailsProvider).FullName,
-                ContractLibraryReferenceType = DISetting.DILibraryReferenceType.Static,
-                ImplementationAssemblyName = DIDefaultImplementation.DALSQLAssemblyName,
-                ImplementationTypeName = DIDefaultImplementation.SQLConnectionDetailsProvider,
-                ImplementationLibraryReferenceType = DISetting.DILibraryReferenceType.Dynamic
+                ContractLibraryReferenceType = DiSetting.DiLibraryReferenceType.Static,
+                ImplementationAssemblyName = DiDefaultImplementation.DALSQLAssemblyName,
+                ImplementationTypeName = DiDefaultImplementation.SQLConnectionDetailsProvider,
+                ImplementationLibraryReferenceType = DiSetting.DiLibraryReferenceType.Dynamic
             };
             manager.Core.CoreDIManager.AddSetting(setting);
-            setting = new DISetting
+            setting = new DiSetting
             {
-                Id = DISettingsGUIDs.IConnectionProvider,
-                Scope = DISetting.DIScope.Scoped,
+                Id = DiSettingsGuids.IConnectionProvider,
+                Scope = DiSetting.DiScope.Scoped,
                 ContractAssemblyName = typeof(ITransactionalConnectionProvider).Assembly.FullName,
                 ContractTypeName = typeof(ITransactionalConnectionProvider).FullName,
-                ContractLibraryReferenceType = DISetting.DILibraryReferenceType.Static,
-                ImplementationAssemblyName = DIDefaultImplementation.DALSQLAssemblyName,
-                ImplementationTypeName = DIDefaultImplementation.SQLConnectionProvider,
-                ImplementationLibraryReferenceType = DISetting.DILibraryReferenceType.Dynamic
+                ContractLibraryReferenceType = DiSetting.DiLibraryReferenceType.Static,
+                ImplementationAssemblyName = DiDefaultImplementation.DALSQLAssemblyName,
+                ImplementationTypeName = DiDefaultImplementation.SQLConnectionProvider,
+                ImplementationLibraryReferenceType = DiSetting.DiLibraryReferenceType.Dynamic
             };
             manager.Core.CoreDIManager.AddSetting(setting);
             //Add settings
             GeneralSetting gs = new GeneralSetting
             {
-				Id = GeleralSettingsGUIDs.SystemVersion,
+				Id = GeleralSettingsGuids.SystemVersion,
 				Name = "System Version",
 				Value = "0.0.1",
 				DefaultValue = "0.0.0",

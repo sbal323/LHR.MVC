@@ -2,33 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LHR.Types.System;
+using Lhr.Types.System;
 using System.Data.SqlClient;
-using LHR.DAL.SQL.ORM;
+using Lhr.Dal.Sql.Orm;
 using System.Data;
-using LHR.Types.Constants;
+using Lhr.Types.Constants;
 
-namespace LHR.DAL.SQL.System
+namespace Lhr.Dal.Sql.System
 {
-    public class DALDI : DALBase, IDALDI
+    public class SqlDalDi : DALBase, IDalDi
     {
-        public DALDI(ITransactionalConnectionProvider provider) : base(provider)
+        public SqlDalDi(ITransactionalConnectionProvider provider) : base(provider)
         {
         }
-        List<DISetting> IDALDI.GetAllSettings()
+        List<DiSetting> IDalDi.GetAllSettings()
         {
-            List<DISetting> result;
-            ORMManager orm = new ORMManager();
+            List<DiSetting> result;
+            OrmManager orm = new OrmManager();
             string commandSQL = $"SELECT * From {TableNames.DISettings}";
             SqlCommand cmd = new SqlCommand(commandSQL);
             SqlDataReader rdr = ExecuteReader(cmd);
-            result = orm.MapDataToBusinessEntityCollection<DISetting>(rdr);
+            result = orm.MapDataToBusinessEntityCollection<DiSetting>(rdr);
             cmd.Dispose();
             return result;
         }
-        void IDALDI.AddSetting(DISetting setting)
+        void IDalDi.AddSetting(DiSetting setting)
         {
-            ORMManager orm = new ORMManager();
+            OrmManager orm = new OrmManager();
             string commandSQL = $"SELECT count(*) From {TableNames.DISettings} Where Id = @Id" ;
             SqlCommand cmd = new SqlCommand(commandSQL);
             cmd.Parameters.AddWithValue("@Id", setting.Id);
@@ -61,7 +61,7 @@ namespace LHR.DAL.SQL.System
                 cmdInsert.Parameters.Add("@ImplementationTypeName", SqlDbType.VarChar);
                 cmdInsert.Parameters.Add("@ImplementationLibraryReferenceType", SqlDbType.VarChar);
                 cmdInsert.Parameters.Add("@Scope", SqlDbType.VarChar);
-                orm.MapEntityToSQLParameters<DISetting>(cmdInsert.Parameters, setting);
+                orm.MapEntityToSQLParameters<DiSetting>(cmdInsert.Parameters, setting);
                 ExecuteNonQuery(cmdInsert);
                 cmdInsert.Dispose();
             }

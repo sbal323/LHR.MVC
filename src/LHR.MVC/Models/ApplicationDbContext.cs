@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 
-namespace LHR.MVC.Models
+namespace Lhr.Mvc.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

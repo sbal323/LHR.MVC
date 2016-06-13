@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.MVC.STH.Model
+namespace Lhr.Mvc.STH.Model
 {
     public class SomeData
     {

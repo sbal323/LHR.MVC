@@ -1,11 +1,11 @@
-﻿using LHR.Core;
-using LHR.MVC.Services.Core;
+﻿using Lhr.Core;
+using Lhr.Mvc.Services.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace LHR.MVC.Services.Updates
+namespace Lhr.Mvc.Services.Updates
 {
     public class UpdateManager
     {

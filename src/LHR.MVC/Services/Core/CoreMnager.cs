@@ -1,24 +1,24 @@
-﻿using LHR.BL.Core;
-using LHR.Core;
-using LHR.Types.System;
+﻿using Lhr.Bl.Core;
+using Lhr.Core;
+using Lhr.Types.System;
 using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.MVC.Services.Core
+namespace Lhr.Mvc.Services.Core
 {
     public class CoreMnager
     {
-        public IDIManager CoreDIManager { get; set; }
-        public IDBManager CoreDBBManager { get; set; }
+        public IDiManager CoreDIManager { get; set; }
+        public IDbManager CoreDBBManager { get; set; }
         public IGeneralSettingsManager CoreGeneralSettingsManager { get; set; }
         public CoreMnager(AppSettings appSettings)
         {
             NinjectKernelProvider ninject = new NinjectKernelProvider(appSettings);
-            CoreDIManager = ninject.Kernel.Get<IDIManager>();
-            CoreDBBManager = ninject.Kernel.Get<IDBManager>();
+            CoreDIManager = ninject.Kernel.Get<IDiManager>();
+            CoreDBBManager = ninject.Kernel.Get<IDbManager>();
             CoreGeneralSettingsManager = ninject.Kernel.Get<IGeneralSettingsManager>();
         }
     }

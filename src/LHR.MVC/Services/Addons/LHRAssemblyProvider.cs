@@ -7,10 +7,10 @@ using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
 using System.Reflection;
 
-namespace LHR.MVC
+namespace Lhr.Mvc
 {
 
-    public class LHRAssemblyProvider: DefaultAssemblyProvider
+    public class LhrAssemblyProvider: DefaultAssemblyProvider
     {
         private readonly IAssemblyProvider[] _additionalProviders;
         private readonly string[] _referenceAssemblies;
@@ -28,7 +28,7 @@ namespace LHR.MVC
         /// that reference the assembly names passed in. 
         /// (i.e. "MyProduct.Web", "MyProduct.Core" )
         /// </param>
-        public LHRAssemblyProvider(
+        public LhrAssemblyProvider(
             ILibraryManager libraryManager,
             IAssemblyProvider[] additionalProviders = null,
             string[] referenceAssemblies = null) : base(libraryManager)

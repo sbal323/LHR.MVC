@@ -1,12 +1,12 @@
-﻿using LHR.Types.System;
+﻿using Lhr.Types.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.DAL
+namespace Lhr.Dal
 {
-    public interface IDALGeneralSettings
+    public interface IDalGeneralSettings
     {
         GeneralSetting GetSetting(Guid Id);
         void AddSetting(GeneralSetting setting);

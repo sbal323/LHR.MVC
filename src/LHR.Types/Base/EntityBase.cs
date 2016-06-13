@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
 using System.Reflection;
-using LHR.Types.ORM;
-using LHR.Types.Constants.Entities;
+using Lhr.Types.Orm;
+using Lhr.Types.Constants.Entities;
 
-namespace LHR.Types.Base
+namespace Lhr.Types.Base
 {
     /// <summary>
     /// Base class for Entity objects
@@ -42,15 +42,15 @@ namespace LHR.Types.Base
         /// <summary>
         /// List of Custom fields values
         /// </summary>
-        public List<LHRFieldValue> CustomFieldsValues { get; }
+        public List<LhrFieldValue> CustomFieldsValues { get; }
         /// <summary>
         /// List of All fields values
         /// </summary>
-        public List<LHRFieldValue> AllFieldValues
+        public List<LhrFieldValue> AllFieldValues
         {
             get
             {
-                List<LHRFieldValue> res = new List<LHRFieldValue>(CustomFieldsValues);
+                List<LhrFieldValue> res = new List<LhrFieldValue>(CustomFieldsValues);
                 foreach (PropertyInfo property in this.GetType().GetTypeInfo().DeclaredProperties)
                 {
                     if (property.GetIndexParameters().Length > 0)
@@ -58,7 +58,7 @@ namespace LHR.Types.Base
                         continue;
                     }
                     object val = property.GetValue(this, null);
-                    LHRFieldValue stdField = new LHRFieldValue
+                    LhrFieldValue stdField = new LhrFieldValue
                     {
                         FieldName = property.Name,
                         Value = null == val ? string.Empty : property.GetValue(this, null).ToString(),
@@ -74,7 +74,7 @@ namespace LHR.Types.Base
         /// </summary>
         public EntityBase()
         {
-            CustomFieldsValues = new List<LHRFieldValue>();
+            CustomFieldsValues = new List<LhrFieldValue>();
         }
         /// <summary>
         /// Overrided ToString() function which print the entity properties and values
@@ -96,7 +96,7 @@ namespace LHR.Types.Base
                 }
                 sb.Append(Environment.NewLine);
             }
-            foreach (LHRFieldValue fv in this.CustomFieldsValues)
+            foreach (LhrFieldValue fv in this.CustomFieldsValues)
             {
                 sb.Append($"{fv.FieldName} [{fv.Type.ToString()}]: {fv.Value.ToString() + Environment.NewLine}");
             }
@@ -113,12 +113,12 @@ namespace LHR.Types.Base
         /// </summary>
         /// <param name="fieldName">Field name</param>
         /// <returns></returns>
-        public LHRFieldValue GetFieldValue(string fieldName)
+        public LhrFieldValue GetFieldValue(string fieldName)
         {
-            LHRFieldValue res; 
+            LhrFieldValue res; 
             res = this.AllFieldValues.Where(x => x.FieldName == fieldName).FirstOrDefault();
             if(null == res)
-                res = new LHRFieldValue();
+                res = new LhrFieldValue();
             return res;
         }
     }

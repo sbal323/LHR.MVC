@@ -9,11 +9,11 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.Logging;
-using LHR.MVC.Models;
-using LHR.MVC.Services;
-using LHR.MVC.ViewModels.Account;
+using Lhr.Mvc.Models;
+using Lhr.Mvc.Services;
+using Lhr.Mvc.ViewModels.Account;
 
-namespace LHR.MVC.Controllers
+namespace Lhr.Mvc.Controllers
 {
     [Authorize]
     public class AccountController : Controller

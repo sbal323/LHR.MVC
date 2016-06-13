@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Types.Constants.Entities
+namespace Lhr.Types.Constants.Entities
 {
-    public static class DISettingsGUIDs
+    public static class DiSettingsGuids
     {
-        #region LHR.DAL
-        public static Guid IDALEmployee
+        #region Lhr.Dal
+        public static Guid IDalEmployee
         {
             get
             {
@@ -31,8 +31,8 @@ namespace LHR.Types.Constants.Entities
         }
         #endregion
 
-        #region LHR.BL
-        public static Guid IBLEmployee
+        #region Lhr.Bl
+        public static Guid IBlEmployee
         {
             get
             {

@@ -9,22 +9,22 @@ using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using LHR.MVC.Models;
-using LHR.MVC.Services;
+using Lhr.Mvc.Models;
+using Lhr.Mvc.Services;
 using Microsoft.AspNet.Mvc.Razor;
 using Microsoft.AspNet.FileProviders;
 using Microsoft.AspNet.Mvc.Infrastructure;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.Reflection;
-using LHR.MVC.Services.DI;
+using Lhr.Mvc.Services.Di;
 using Microsoft.Extensions.OptionsModel;
 using System.IO;
-using LHR.Types.System;
-using LHR.Core;
-using LHR.MVC.Services.Core;
-using LHR.MVC.Services.Updates;
+using Lhr.Types.System;
+using Lhr.Core;
+using Lhr.Mvc.Services.Core;
+using Lhr.Mvc.Services.Updates;
 
-namespace LHR.MVC
+namespace Lhr.Mvc
 {
     public class Startup
     {
@@ -80,15 +80,15 @@ namespace LHR.MVC
             var rootFileProvider = new PhysicalFileProvider(CurrentEnvironment.WebRootPath + "\\..");
 
             //create the custom plugin directory provider
-            services.AddSingleton<IAssemblyProvider, LHRAssemblyProvider>(provider =>
+            services.AddSingleton<IAssemblyProvider, LhrAssemblyProvider>(provider =>
             {
-                var pluginAssemblyProvider = new LHRPluginAssemblyProvider(
+                var pluginAssemblyProvider = new LhrPluginAssemblyProvider(
                     rootFileProvider,
                     PlatformServices.Default.AssemblyLoadContextAccessor,
                     PlatformServices.Default.AssemblyLoaderContainer,
                     serviceAppSettings);
                 //return the composite one - this wraps the default MVC one
-                return new LHRAssemblyProvider(
+                return new LhrAssemblyProvider(
                     provider.GetRequiredService<ILibraryManager>(),
                     new IAssemblyProvider[] { pluginAssemblyProvider });
             });
@@ -97,7 +97,7 @@ namespace LHR.MVC
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 options.FileProvider = rootFileProvider;
-                options.ViewLocationExpanders.Add(new LHRViewLocationExpander(serviceAppSettings));
+                options.ViewLocationExpanders.Add(new LhrViewLocationExpander(serviceAppSettings));
             });
             // Init core
             CoreMnager coreManager = new CoreMnager(serviceAppSettings.Value);
@@ -106,7 +106,7 @@ namespace LHR.MVC
             UpdateVersion fromVersion = new UpdateVersion(coreManager.CoreGeneralSettingsManager.GetCurrentSystemVersion().Value);
             upm.Update(fromVersion, new UpdateVersion(1, 0, 0));
             // Manage DI
-            DIProvider diProvider = new DIProvider(serviceAppSettings.Value, rootFileProvider, services, coreManager.CoreDIManager);
+            DiProvider diProvider = new DiProvider(serviceAppSettings.Value, rootFileProvider, services, coreManager.CoreDIManager);
             diProvider.LoadLibraries();
             diProvider.RegisterDependencies();
         }

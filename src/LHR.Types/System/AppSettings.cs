@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Types.System
+namespace Lhr.Types.System
 {
     /// <summary>
     /// Application settings for MVC project
@@ -25,6 +25,6 @@ namespace LHR.Types.System
         /// <summary>
         /// Connection string to DataBase
         /// </summary>
-        public string DBConnectionString { get; set; }
+        public string DbConnectionString { get; set; }
     }
 }

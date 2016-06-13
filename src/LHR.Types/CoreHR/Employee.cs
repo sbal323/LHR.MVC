@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LHR.Types.Base;
+using Lhr.Types.Base;
 
-namespace LHR.Types.CoreHR
+namespace Lhr.Types.CoreHr
 {
     /// <summary>
     /// Entiry representing Employee

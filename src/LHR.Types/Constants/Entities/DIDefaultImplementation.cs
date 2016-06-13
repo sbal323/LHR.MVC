@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Types.Constants.Entities
+namespace Lhr.Types.Constants.Entities
 {
-    public static class DIDefaultImplementation
+    public static class DiDefaultImplementation
     {
         //Assembly names
         public const string DALSQLAssemblyName = "LHR.DAL.SQL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";

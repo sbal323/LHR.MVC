@@ -1,11 +1,11 @@
-﻿using LHR.Types.System;
+﻿using Lhr.Types.System;
 using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Core
+namespace Lhr.Core
 {
     public class NinjectKernelProvider
     {

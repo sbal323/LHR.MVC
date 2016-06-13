@@ -7,11 +7,11 @@ using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
-using LHR.MVC.Models;
-using LHR.MVC.Services;
-using LHR.MVC.ViewModels.Manage;
+using Lhr.Mvc.Models;
+using Lhr.Mvc.Services;
+using Lhr.Mvc.ViewModels.Manage;
 
-namespace LHR.MVC.Controllers
+namespace Lhr.Mvc.Controllers
 {
     [Authorize]
     public class ManageController : Controller

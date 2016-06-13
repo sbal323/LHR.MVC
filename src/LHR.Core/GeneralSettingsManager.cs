@@ -1,22 +1,22 @@
-﻿using LHR.BL.Core;
-using LHR.DAL;
-using LHR.DAL.SQL;
-using LHR.DAL.SQL.System;
-using LHR.Types.Constants.Entities;
-using LHR.Types.System;
+﻿using Lhr.Bl.Core;
+using Lhr.Dal;
+using Lhr.Dal.Sql;
+using Lhr.Dal.Sql.System;
+using Lhr.Types.Constants.Entities;
+using Lhr.Types.System;
 using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Core
+namespace Lhr.Core
 {
     public class GeneralSettingsManager: IGeneralSettingsManager
     {
-        IDALGeneralSettings dal;
+        IDalGeneralSettings dal;
         GeneralSetting currentSystemVersion;
-        public GeneralSettingsManager(IDALGeneralSettings dalGeneralSettings)
+        public GeneralSettingsManager(IDalGeneralSettings dalGeneralSettings)
         {
             dal = dalGeneralSettings;
         }
@@ -28,7 +28,7 @@ namespace LHR.Core
         {
             if (null == currentSystemVersion)
             {
-                var vers = dal.GetSetting(GeleralSettingsGUIDs.SystemVersion);
+                var vers = dal.GetSetting(GeleralSettingsGuids.SystemVersion);
                 if (null != vers)
                     currentSystemVersion = vers;
                 else

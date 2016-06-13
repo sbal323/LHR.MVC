@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc.Filters;
 
-namespace LHR.MVC.Filters
+namespace Lhr.Mvc.Filters
 {
     public class ErrorHandlerFilter : ExceptionFilterAttribute, IExceptionFilter
     {

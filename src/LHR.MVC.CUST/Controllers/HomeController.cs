@@ -1,10 +1,10 @@
-﻿using LHR.MVC.STH.Model;
+﻿using Lhr.Mvc.STH.Model;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.OptionsModel;
-using LHR.Types.System;
+using Lhr.Types.System;
 
-namespace LHR.MVC.Custom.Controllers
+namespace Lhr.Mvc.Custom.Controllers
 {
 
     public class HomeController: Controller

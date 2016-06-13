@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.MVC.ViewModels.Account
+namespace Lhr.Mvc.ViewModels.Account
 {
     public class VerifyCodeViewModel
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Types.ORM
+namespace Lhr.Types.Orm
 {
     /// <summary>
     /// Attribut to map entity object with database resultset's field name

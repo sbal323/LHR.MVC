@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LHR.Types.System;
-using LHR.DAL.SQL.System;
-using LHR.DAL.SQL;
-using LHR.DAL;
+using Lhr.Types.System;
+using Lhr.Dal.Sql.System;
+using Lhr.Dal.Sql;
+using Lhr.Dal;
 using Ninject;
-using LHR.BL.Core;
+using Lhr.Bl.Core;
 
-namespace LHR.Core
+namespace Lhr.Core
 {
-    public class DIManager: IDIManager
+    public class DiManager: IDiManager
     {
-        IDALDI dal;
-        public DIManager(IDALDI dalDI)
+        IDalDi dal;
+        public DiManager(IDalDi dalDI)
         {
             dal = dalDI;
         }
-        void IDIManager.AddSetting(DISetting setting)
+        void IDiManager.AddSetting(DiSetting setting)
         {
             dal.AddSetting(setting);
         }
-        List<DISetting> IDIManager.GetSettings()
+        List<DiSetting> IDiManager.GetSettings()
         {
             return dal.GetAllSettings();
         }

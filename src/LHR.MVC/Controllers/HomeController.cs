@@ -7,17 +7,17 @@ using Microsoft.AspNet.FileProviders;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Extensions.OptionsModel;
-using LHR.Types.System;
-using LHR.BL;
+using Lhr.Types.System;
+using Lhr.Bl;
 
 
-namespace LHR.MVC.Controllers
+namespace Lhr.Mvc.Controllers
 {
     public class HomeController : Controller
     {
-        private IBLEmployee BLEmployee { get; set; }
+        private IBlEmployee BLEmployee { get; set; }
         private AppSettings Settings { get; set; }
-        public HomeController(IOptions<AppSettings> settings, IBLEmployee blEmployee)
+        public HomeController(IOptions<AppSettings> settings, IBlEmployee blEmployee)
         {
             Settings = settings.Value;
             BLEmployee = blEmployee;

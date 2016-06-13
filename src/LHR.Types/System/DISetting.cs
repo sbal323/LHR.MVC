@@ -1,16 +1,16 @@
-﻿using LHR.Types.Constants.Entities;
-using LHR.Types.ORM;
+﻿using Lhr.Types.Constants.Entities;
+using Lhr.Types.Orm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Types.System
+namespace Lhr.Types.System
 {
     /// <summary>
     /// Setting for dependency injection
     /// </summary>
-    public class DISetting
+    public class DiSetting
     {
         /// <summary>
         /// Dependency injection scope
@@ -18,7 +18,7 @@ namespace LHR.Types.System
         /// Scoped - create one object per HTTP request
         /// Instance - create one object per application
         /// </summary>
-        public enum DIScope
+        public enum DiScope
         {
             Transient = 1,
             Scoped = 2,
@@ -29,7 +29,7 @@ namespace LHR.Types.System
         /// Static - fos statically linked libraries (typically interface libraries). 
         /// Dynamic - for 
         /// </summary>
-        public enum DILibraryReferenceType
+        public enum DiLibraryReferenceType
         {
             Static = 1,
             Dynamic = 2
@@ -37,43 +37,43 @@ namespace LHR.Types.System
         /// <summary>
         /// Setting Identifier for future reference
         /// </summary>
-        [FieldName(DISettingFieldNames.Id)]
+        [FieldName(DiSettingFieldNames.Id)]
         public Guid Id { get; set; }
         /// <summary>
         /// Assembly name of the contract
         /// </summary>
-        [FieldName(DISettingFieldNames.ContractAssemblyName)]
+        [FieldName(DiSettingFieldNames.ContractAssemblyName)]
         public string ContractAssemblyName { get; set; }
         /// <summary>
         /// Type name of the contract
         /// </summary>
-        [FieldName(DISettingFieldNames.ContractTypeName)]
+        [FieldName(DiSettingFieldNames.ContractTypeName)]
         public string ContractTypeName { get; set; }
         /// <summary>
         /// Assembly name of the implementation
         /// </summary>
-        [FieldName(DISettingFieldNames.ImplementationAssemblyName)]
+        [FieldName(DiSettingFieldNames.ImplementationAssemblyName)]
         public string ImplementationAssemblyName { get; set; }
         /// <summary>
         /// Type name of the implementation
         /// </summary>
-        [FieldName(DISettingFieldNames.ImplementationTypeName)]
+        [FieldName(DiSettingFieldNames.ImplementationTypeName)]
         public string ImplementationTypeName { get; set; }
         /// <summary>
         /// Dependency injection scope
         /// </summary>
-        [FieldName(DISettingFieldNames.Scope)]
-        public DIScope Scope { get; set; }
+        [FieldName(DiSettingFieldNames.Scope)]
+        public DiScope Scope { get; set; }
         /// <summary>
         /// Library reference type of the contract
         /// </summary>
-        [FieldName(DISettingFieldNames.ContractLibraryReferenceType)]
-        public DILibraryReferenceType ContractLibraryReferenceType { get; set; }
+        [FieldName(DiSettingFieldNames.ContractLibraryReferenceType)]
+        public DiLibraryReferenceType ContractLibraryReferenceType { get; set; }
         /// <summary>
         /// Library reference type of the implementation
         /// </summary>
-        [FieldName(DISettingFieldNames.ImplementationLibraryReferenceType)]
-        public DILibraryReferenceType ImplementationLibraryReferenceType { get; set; }
+        [FieldName(DiSettingFieldNames.ImplementationLibraryReferenceType)]
+        public DiLibraryReferenceType ImplementationLibraryReferenceType { get; set; }
 
     }
 }

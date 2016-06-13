@@ -1,14 +1,14 @@
-﻿using LHR.Types.System;
+﻿using Lhr.Types.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.DAL
+namespace Lhr.Dal
 {
-    public interface IDALDI
+    public interface IDalDi
     {
-        List<DISetting> GetAllSettings();
-        void AddSetting(DISetting setting);
+        List<DiSetting> GetAllSettings();
+        void AddSetting(DiSetting setting);
     }
 }

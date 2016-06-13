@@ -4,15 +4,15 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.DAL.SQL.System
+namespace Lhr.Dal.Sql.System
 {
-    public class DALDB : DALBase, IDALDB
+    public class SqlDalDb : DALBase, IDalDb
     {
-        public DALDB(ITransactionalConnectionProvider provider) : base(provider)
+        public SqlDalDb(ITransactionalConnectionProvider provider) : base(provider)
         {
         }
         
-        void IDALDB.CreateTable(string tableName, string sql)
+        void IDalDb.CreateTable(string tableName, string sql)
         {
             if (!TableExists(tableName))
             {

@@ -1,4 +1,4 @@
-﻿using LHR.MVC.Services;
+﻿using Lhr.Mvc.Services;
 using Microsoft.AspNet.FileProviders;
 using Microsoft.AspNet.Mvc.Infrastructure;
 using Microsoft.Extensions.OptionsModel;
@@ -9,18 +9,18 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using LHR.Types.System;
+using Lhr.Types.System;
 
-namespace LHR.MVC
+namespace Lhr.Mvc
 {
-    public class LHRPluginAssemblyProvider : IAssemblyProvider
+    public class LhrPluginAssemblyProvider : IAssemblyProvider
     {
         private readonly IFileProvider _fileProvider;
         private readonly IAssemblyLoadContextAccessor _loadContextAccessor;
         private readonly IAssemblyLoaderContainer _assemblyLoaderContainer;
         private readonly AppSettings _settings;
 
-        public LHRPluginAssemblyProvider(
+        public LhrPluginAssemblyProvider(
                 IFileProvider fileProvider,
                 IAssemblyLoadContextAccessor loadContextAccessor,
                 IAssemblyLoaderContainer assemblyLoaderContainer,
@@ -71,7 +71,7 @@ namespace LHR.MVC
             //    new LHRDirectoryLoader(binPath, loadContext)
             //    );
             using (var loader = _assemblyLoaderContainer.AddLoader(
-                new LHRDirectoryLoader(binPath, loadContext)
+                new LhrDirectoryLoader(binPath, loadContext)
                 ))
             {
                 foreach (var fileSystemInfo in binPath.GetFileSystemInfos("*.dll"))

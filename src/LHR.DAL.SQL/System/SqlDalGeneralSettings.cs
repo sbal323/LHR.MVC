@@ -1,28 +1,28 @@
-﻿using LHR.DAL.SQL.ORM;
-using LHR.Types.Constants;
-using LHR.Types.System;
+﻿using Lhr.Dal.Sql.Orm;
+using Lhr.Types.Constants;
+using Lhr.Types.System;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using LHR.DAL;
+using Lhr.Dal;
 
-namespace LHR.DAL.SQL.System
+namespace Lhr.Dal.Sql.System
 {
-    public class DALGeneralSettings : DALBase, IDALGeneralSettings
+    public class SqlDalGeneralSettings : DALBase, IDalGeneralSettings
     {
-        public DALGeneralSettings(ITransactionalConnectionProvider provider) : base(provider)
+        public SqlDalGeneralSettings(ITransactionalConnectionProvider provider) : base(provider)
         {
         }
-        GeneralSetting IDALGeneralSettings.GetSetting(Guid Id)
+        GeneralSetting IDalGeneralSettings.GetSetting(Guid Id)
         {
             if (!TableExists(TableNames.GeneralSettings))
             {
                 return null;
             }
-            ORMManager orm = new ORMManager();
+            OrmManager orm = new OrmManager();
             string commandSQL = $"SELECT * From {TableNames.GeneralSettings} Where Id = @Id";
             SqlCommand cmd = new SqlCommand(commandSQL);
             cmd.Parameters.AddWithValue("@Id", Id);
@@ -32,9 +32,9 @@ namespace LHR.DAL.SQL.System
             else
                 return null;    
         }
-        void IDALGeneralSettings.AddSetting(GeneralSetting setting)
+        void IDalGeneralSettings.AddSetting(GeneralSetting setting)
         {
-            ORMManager orm = new ORMManager();
+            OrmManager orm = new OrmManager();
             string commandSQL = $"SELECT count(*) From {TableNames.GeneralSettings} Where Id = @Id";
             SqlCommand cmd = new SqlCommand(commandSQL);
             cmd.Parameters.AddWithValue("@Id", setting.Id);

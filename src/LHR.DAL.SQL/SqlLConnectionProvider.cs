@@ -5,16 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 
-namespace LHR.DAL.SQL
+namespace Lhr.Dal.Sql
 {
-    public class SQLConnectionProvider: ITransactionalConnectionProvider, IDisposable
+    public class SqlConnectionProvider: ITransactionalConnectionProvider, IDisposable
     {
         public IConnectionDetailsProvider ConnectionDetails { get; set; }
         private SqlConnection connection;
         private SqlTransaction transaction;
         public Guid Id = Guid.NewGuid();
 
-        public SQLConnectionProvider(IConnectionDetailsProvider connectionDetails)
+        public SqlConnectionProvider(IConnectionDetailsProvider connectionDetails)
         {
             ConnectionDetails = connectionDetails;
         }
@@ -89,7 +89,7 @@ namespace LHR.DAL.SQL
             }
         }
         // override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        ~SQLConnectionProvider()
+        ~SqlConnectionProvider()
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(false);

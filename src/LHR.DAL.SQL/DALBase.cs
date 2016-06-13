@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace LHR.DAL.SQL
+namespace Lhr.Dal.Sql
 {
     public class DALBase
     {

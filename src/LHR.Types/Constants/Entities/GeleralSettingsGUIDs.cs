@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Types.Constants.Entities
+namespace Lhr.Types.Constants.Entities
 {
-    public static class GeleralSettingsGUIDs
+    public static class GeleralSettingsGuids
     {
         public static Guid SystemVersion
         {

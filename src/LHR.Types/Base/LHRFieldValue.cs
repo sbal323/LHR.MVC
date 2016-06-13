@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Types.Base
+namespace Lhr.Types.Base
 {
     /// <summary>
     /// Field value for custom fields
     /// </summary>
-    public class LHRFieldValue
+    public class LhrFieldValue
     {
         /// <summary>
         /// Field name

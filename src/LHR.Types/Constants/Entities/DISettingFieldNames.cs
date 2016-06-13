@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LHR.Types.Constants.Entities
+namespace Lhr.Types.Constants.Entities
 {
     /// <summary>
     /// Field Names for DISetting entity 
     /// </summary>
-    public static class DISettingFieldNames
+    public static class DiSettingFieldNames
     {
         public const string Id = "Id";
         public const string ContractAssemblyName = "ContractAssemblyName";

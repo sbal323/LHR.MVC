@@ -1,6 +1,6 @@
-﻿using LHR.DAL;
-using LHR.DAL.SQL;
-using LHR.Types.System;
+﻿using Lhr.Dal;
+using Lhr.Dal.Sql;
+using Lhr.Types.System;
 using Ninject.Modules;
 using Ninject;
 using System;
@@ -9,24 +9,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ninject.Web.Common;
 using Ninject.Parameters;
-using LHR.DAL.SQL.System;
+using Lhr.Dal.Sql.System;
 using System.Web;
-using LHR.BL.Core;
+using Lhr.Bl.Core;
 
-namespace LHR.Core
+namespace Lhr.Core
 {
     public class CoreNinjectModule : NinjectModule
     {
         public AppSettings ApplicationSettings { get; set; }
         public override void Load()
         {
-            Bind<IConnectionDetailsProvider>().To<SQLConnectionDetailsProvider>().InSingletonScope().WithConstructorArgument("settingsJson", Newtonsoft.Json.JsonConvert.SerializeObject(ApplicationSettings));
-            Bind<ITransactionalConnectionProvider>().To<SQLConnectionProvider>().InSingletonScope();
-            Bind<IDALDB>().To<DALDB>();
-            Bind<IDALDI>().To<DALDI>();
-            Bind<IDALGeneralSettings>().To<DALGeneralSettings>();
-            Bind<IDBManager>().To<DBManager>();
-            Bind<IDIManager>().To<DIManager>();
+            Bind<IConnectionDetailsProvider>().To<SqlConnectionDetailsProvider>().InSingletonScope().WithConstructorArgument("settingsJson", Newtonsoft.Json.JsonConvert.SerializeObject(ApplicationSettings));
+            Bind<ITransactionalConnectionProvider>().To<SqlConnectionProvider>().InSingletonScope();
+            Bind<IDalDb>().To<SqlDalDb>();
+            Bind<IDalDi>().To<SqlDalDi>();
+            Bind<IDalGeneralSettings>().To<SqlDalGeneralSettings>();
+            Bind<IDbManager>().To<DbManager>();
+            Bind<IDiManager>().To<DiManager>();
             Bind<IGeneralSettingsManager>().To<GeneralSettingsManager>();
             Type contract = null, implementation = null;
             Bind(contract).To(implementation);

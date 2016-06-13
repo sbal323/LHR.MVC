@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LHR.Types.CoreHR;
+using Lhr.Types.CoreHr;
 
-namespace LHR.BL
+namespace Lhr.Bl
 {
-    public interface IBLEmployee
+    public interface IBlEmployee
     {
         Employee Get(int id);
         List<Employee> GetManagers(int employeeId);

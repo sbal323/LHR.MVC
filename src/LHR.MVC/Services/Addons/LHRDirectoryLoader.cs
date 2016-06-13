@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
 
-namespace LHR.MVC
+namespace Lhr.Mvc
 {
-    public class LHRDirectoryLoader : IAssemblyLoader
+    public class LhrDirectoryLoader : IAssemblyLoader
     {
         private readonly IAssemblyLoadContext _context;
         private readonly DirectoryInfo _path;
 
-        public LHRDirectoryLoader(DirectoryInfo path, IAssemblyLoadContext context)
+        public LhrDirectoryLoader(DirectoryInfo path, IAssemblyLoadContext context)
         {
             _path = path;
             _context = context;
