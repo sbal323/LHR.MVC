@@ -9,7 +9,7 @@
     "dnx46": { }
   },
   "dependencies": {
-    "LHR.DAL": "1.0.0-*",
-    "LHR.Types": "1.0.0-*"
+    "Lhr.Dal": "1.0.0-*",
+    "Lhr.Types": "1.0.0-*"
   }
 }

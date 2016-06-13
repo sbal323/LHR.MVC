@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Lhr.Bl.Base
 {
-    public class BLBase
+    public class BlBase
     {
     }
 }

@@ -1,0 +1,18 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Lhr.Mvc": "1.0.0-*",
+    "Lhr.Types": "1.0.0-*",
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "NETStandard.Library": "1.5.0-rc2-24027"
+  },
+
+  "frameworks": {
+    "dnx46": {
+    }
+  },
+  "scripts": {
+    "postbuild": [ "echo D | xcopy  /S /E /Y \"%project:Directory%\\..\\..\\..\\artifacts\\bin\\%project:Name%\\Debug\\dnx46\" \"%project:Directory%\\..\\..\\Lhr.Mvc\\Plugins\\%project:Name%\\bin\\\"", "echo D | xcopy /S /E /Y \"%project:Directory%\\Views\" \"%project:Directory%\\..\\..\\Lhr.Mvc\\Plugins\\%project:Name%\\Views\\\"" ]
+  }
+}

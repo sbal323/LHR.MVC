@@ -28,8 +28,8 @@ namespace Lhr.Core
             Bind<IDbManager>().To<DbManager>();
             Bind<IDiManager>().To<DiManager>();
             Bind<IGeneralSettingsManager>().To<GeneralSettingsManager>();
-            Type contract = null, implementation = null;
-            Bind(contract).To(implementation);
+            //Type contract = null, implementation = null;
+            //Bind(contract).To(implementation);
         }
     }
 }

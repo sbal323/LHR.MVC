@@ -8,9 +8,9 @@
   "dependencies": {
     "EntityFramework.Commands": "7.0.0-rc1-final",
     "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
-    "LHR.BL": "1.0.0-*",
-    "LHR.Core": "1.0.0-*",
-    "LHR.DAL": "1.0.0-*",
+    "Lhr.Bl": "1.0.0-*",
+    "Lhr.Core": "1.0.0-*",
+    "Lhr.Dal": "1.0.0-*",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
     "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-rc1-final",
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
@@ -27,7 +27,8 @@
     "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final" },
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final"
+  },
 
   "commands": {
     "web": "Microsoft.AspNet.Server.Kestrel",
