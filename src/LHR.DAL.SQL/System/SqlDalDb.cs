@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lhr.Dal.Sql.System
 {
-    public class SqlDalDb : DALBase, IDalDb
+    public class SqlDalDb : DalBase, IDalDb
     {
         public SqlDalDb(ITransactionalConnectionProvider provider) : base(provider)
         {

@@ -7,12 +7,12 @@ using System.Data;
 
 namespace Lhr.Dal.Sql
 {
-    public class DALBase
+    public class DalBase
     {
         protected SqlConnection Connection { get; }
         //protected SqlTransaction Transaction { get; set; }
         ITransactionalConnectionProvider connectionProvider;
-        public DALBase(ITransactionalConnectionProvider provider)
+        public DalBase(ITransactionalConnectionProvider provider)
         {
             Connection = (SqlConnection)provider.GetConnection();
             connectionProvider = provider;

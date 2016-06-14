@@ -10,7 +10,7 @@ using Lhr.Types.Constants;
 
 namespace Lhr.Dal.Sql.System
 {
-    public class SqlDalDi : DALBase, IDalDi
+    public class SqlDalDi : DalBase, IDalDi
     {
         public SqlDalDi(ITransactionalConnectionProvider provider) : base(provider)
         {

@@ -11,7 +11,7 @@ using Lhr.Dal;
 
 namespace Lhr.Dal.Sql.System
 {
-    public class SqlDalGeneralSettings : DALBase, IDalGeneralSettings
+    public class SqlDalGeneralSettings : DalBase, IDalGeneralSettings
     {
         public SqlDalGeneralSettings(ITransactionalConnectionProvider provider) : base(provider)
         {

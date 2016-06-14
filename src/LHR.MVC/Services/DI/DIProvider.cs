@@ -19,14 +19,14 @@ namespace Lhr.Mvc.Services.Di
         AppSettings settings;
         PhysicalFileProvider rootFileProvider;
         IServiceCollection services;
-        IDiManager coreDIManager;
+        IDiManager coreDiManager;
         // Load libraries for dynamic dependencies
         public DiProvider(AppSettings appSettings, PhysicalFileProvider fileProvider, IServiceCollection serviceCollection, IDiManager diManager)
         {
             settings = appSettings;
             rootFileProvider = fileProvider;
             services = serviceCollection;
-            coreDIManager = diManager;
+            coreDiManager = diManager;
         }
 
         public void LoadLibraries()
@@ -42,15 +42,15 @@ namespace Lhr.Mvc.Services.Di
         }
         private List<DiSetting> LoadSettings()
         {
-            return coreDIManager.GetSettings();
+            return coreDiManager.GetSettings();
         }
         public void RegisterDependencies()
         {
             List<DiSetting> loadedSettings = LoadSettings();
             Type contract, implementation;
             loadedSettings.ForEach(setting => {
-                contract = GetDIType(setting.ContractLibraryReferenceType, setting.ContractAssemblyName, setting.ContractTypeName);
-                implementation = GetDIType(setting.ImplementationLibraryReferenceType, setting.ImplementationAssemblyName, setting.ImplementationTypeName);
+                contract = GetDiType(setting.ContractLibraryReferenceType, setting.ContractAssemblyName, setting.ContractTypeName);
+                implementation = GetDiType(setting.ImplementationLibraryReferenceType, setting.ImplementationAssemblyName, setting.ImplementationTypeName);
                 RegisterService(setting.Scope, contract, implementation);
             });
         }
@@ -70,7 +70,7 @@ namespace Lhr.Mvc.Services.Di
             }
         }
 
-        private Type GetDIType(DiSetting.DiLibraryReferenceType contractLibraryReferenceType, string contractAssemblyName, string contractTypeName)
+        private Type GetDiType(DiSetting.DiLibraryReferenceType contractLibraryReferenceType, string contractAssemblyName, string contractTypeName)
         {
             Type ret = null;
             if(DiSetting.DiLibraryReferenceType.Static == contractLibraryReferenceType)

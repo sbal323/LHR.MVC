@@ -1,6 +1,6 @@
 ﻿{
   "version": "1.0.0-*",
-  "description": "LHR.DAL.SQL Class Library",
+  "description": "Lhr.Dal.Sql Class Library",
   "authors": [ "bal" ],
   "tags": [ "" ],
   "projectUrl": "",
@@ -17,6 +17,6 @@
     "System.Data.SqlClient": "4.1.0-rc2-24027"
   },
   "scripts": {
-    "postbuild": "xcopy /E /Y \"%project:Directory%\\..\\..\\artifacts\\bin\\%project:Name%\\Debug\\dnx46\" \"%project:Directory%\\..\\LHR.MVC\\DILibraries\""
+    "postbuild": "xcopy /E /Y \"%project:Directory%\\..\\..\\artifacts\\bin\\%project:Name%\\Debug\\dnx46\" \"%project:Directory%\\..\\Lhr.Mvc\\DiLibraries\""
   }
 }

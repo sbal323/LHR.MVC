@@ -14,6 +14,6 @@
     "Lhr.Types": "1.0.0-*"
   },
   "scripts": {
-    "postbuild": "xcopy /E /Y \"%project:Directory%\\..\\..\\artifacts\\bin\\%project:Name%\\Debug\\dnx46\" \"%project:Directory%\\..\\LHR.MVC\\DILibraries\""
+    "postbuild": "xcopy /E /Y \"%project:Directory%\\..\\..\\artifacts\\bin\\%project:Name%\\Debug\\dnx46\" \"%project:Directory%\\..\\Lhr.Mvc\\DiLibraries\""
   }
 }

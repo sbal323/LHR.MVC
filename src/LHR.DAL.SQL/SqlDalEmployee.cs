@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Lhr.Dal.Sql
 {
-    public class SqlDalEmployee : DALBase, IDalEmployee
+    public class SqlDalEmployee : DalBase, IDalEmployee
     {
         public SqlDalEmployee(ITransactionalConnectionProvider provider): base(provider)
         {
